@@ -1,0 +1,13 @@
+login
+Tampilan awal
+	-Menu roti
+Side Bar
+	Transaksi Penjualan
+	- Toko
+	- Sales
+	Stok
+	- Toko
+	- Sales
+	Laporan
+	- Toko
+	- Sales
