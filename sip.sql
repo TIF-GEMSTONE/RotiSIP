@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2018 at 07:59 AM
+-- Generation Time: Oct 17, 2018 at 08:13 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -137,14 +137,14 @@ CREATE TABLE `tabel_roti` (
 --
 
 INSERT INTO `tabel_roti` (`id_roti`, `nama_roti`, `harga`, `tgl_produksi`, `tgl_kadaluarsa`, `gambar`) VALUES
-(70001, 'Roti Pisang', 3000, '2018-06-28 06:56:32', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSIP/master/images/rotipisang.jpg'),
-(70002, 'Roti Keju', 3500, '2018-06-28 06:56:33', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSIP/master/images/rotikeju.jpg'),
-(70003, 'Roti Coklat', 3500, '2018-06-28 06:56:33', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSIP/master/images/roticoklat.jpg'),
-(70004, 'Roti Sisir', 8000, '2018-06-28 06:56:33', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSIP/master/images/rotisisir.jpg'),
-(70005, 'Roti Kenong', 9000, '2018-06-28 06:56:33', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSIP/master/images/rotikenong.jpg'),
-(70006, 'Roti Sobek', 8500, '2018-06-28 06:56:33', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSIP/master/images/rotisobek.jpg'),
-(70007, 'Roti Tawar', 10000, '2018-06-28 06:56:33', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSIP/master/images/rotitawar.jpg'),
-(70009, 'Roti Strawberry', 2000, '2018-06-28 06:56:33', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSIP-Web/master/assets/images/rotistrw.jpg');
+(70001, 'Roti Pisang', 3000, '2018-10-17 06:07:01', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotipisang.jpg'),
+(70002, 'Roti Keju', 3500, '2018-10-17 06:09:12', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotikeju.jpg'),
+(70003, 'Roti Coklat', 3500, '2018-10-17 06:09:12', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/roticoklat.jpg'),
+(70004, 'Roti Sisir', 8000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotisisir.jpg'),
+(70005, 'Roti Kenong', 9000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotikenong.jpg'),
+(70006, 'Roti Sobek', 8500, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotisobek.jpg'),
+(70007, 'Roti Tawar', 10000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotitawar.jpg'),
+(70009, 'Roti Strawberry', 2000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotistrw.jpg');
 
 -- --------------------------------------------------------
 
