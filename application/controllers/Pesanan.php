@@ -9,7 +9,9 @@ class Pesanan extends CI_Controller{
 	function index(){
 		$data = array (
 				'data' =>$this->Pesanan_model->get_data());
+		$this->load->view('element/header');
 		$this->load->view('ReadPesanan_view', $data);
+		$this->load->view('element/footer');
 	}
 	
 	function input(){
@@ -36,7 +38,9 @@ class Pesanan extends CI_Controller{
 			$data = array(
 				'roti'=>$this->Pesanan_model->get_roti()
 				);
+			$this->load->view('element/header');
 			$this->load->view('CreatePesanan_view', $data);
+			$this->load->view('element/footer');
 		}
 	}
 	function delete($id){
@@ -51,8 +55,9 @@ class Pesanan extends CI_Controller{
 		$data['id_roti']= $this->Pesanan_model->get_roti();
      	$data['nama_roti']= $this->Pesanan_model->get_roti();
 
+		$this->load->view('element/header');
         $this->load->view("UpdatePesanan_view", $data);
-		
+		$this->load->view('element/footer');
 	}
 	
 	function update(){
@@ -73,7 +78,9 @@ class Pesanan extends CI_Controller{
     function detail($id){
     	$data = array (
 				'detail' =>$this->Pesanan_model->get_detail($id));
-		$this->load->view('DetailPesanan_view', $data);
+		$this->load->view('element/header');
+        $this->load->view("DetailPesanan_view", $data);
+		$this->load->view('element/footer');
     }
 
 }

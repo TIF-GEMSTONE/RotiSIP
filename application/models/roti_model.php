@@ -17,6 +17,12 @@ class roti_model extends CI_Model{
 		return $hsl;
 	}
 
+	function search($key){
+		$this->db->like('id_roti', $key);
+		$query = $this->db->get('posts');
+		return $query->result();
+	}
+	
 	function get_id_roti(){
 		$q = $this->db->query("SELECT MAX(RIGHT(id_roti,3)) AS kd_max FROM tabel_roti");
         $kd = "";
