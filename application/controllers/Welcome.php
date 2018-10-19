@@ -22,7 +22,10 @@ public $model = NULL;
 			if ($this->model1->cek_log()==TRUE) {
 				$this->session->set_userdata('username', $this->model1->username);
 				$data['produk'] = $this->Produk_model->data();
-				$this->load->view('element/header');
+				$title=array(
+			        'title'=>'Dashboard'
+			    );
+				$this->load->view('element/header', $title);
 				$this->load->view('Home_view', $data);
 				$this->load->view('element/footer');
 				//$this->load->view('Home_view', ['model'=>$this->model1]);

@@ -20,7 +20,10 @@ class Dashboard extends CI_Controller{
 			if ($this->model1->cek_log()==TRUE) {
 				$this->session->set_userdata('username', $this->model1->username);
 				$data['produk'] = $this->Produk_model->data();
-				$this->load->view('element/header');
+				$title=array(
+		            'title'=>'Dashboard'
+		        );
+				$this->load->view('element/header', $title);
 				$this->load->view('Home_view', $data);
 				$this->load->view('element/footer');
 				//$this->load->view('Home_view', ['model'=>$this->model1]);
@@ -34,7 +37,10 @@ class Dashboard extends CI_Controller{
 	}
 	function Home(){
 		$data['produk'] = $this->Produk_model->data();
-		$this->load->view('element/header');
+		$title=array(
+		            'title'=>'Dashboard'
+		        );
+		$this->load->view('element/header', $title);
 		$this->load->view('Home_view', $data);
 		$this->load->view('element/footer');
 	}
@@ -47,9 +53,12 @@ class Dashboard extends CI_Controller{
 	}
 
 	public function input(){
-      $this->load->view('element/header');
-      $this->load->view('InputBarang');
-      $this->load->view('element/footer');
+	$title=array(
+        'title'=>'Dashboard'
+    );
+	$this->load->view('element/header', $title);
+  	$this->load->view('InputBarang');
+  	$this->load->view('element/footer');
     }
 
 	// public function ubah($id){
@@ -58,6 +67,9 @@ class Dashboard extends CI_Controller{
 	//   }
 
 	public function tampil(){
+	$title=array(
+        'title'=>'Dashboard'
+    );
 		$this->load->view('element/header');
 		$this->load->view('Home_view', $data);
 		$this->load->view('element/footer');

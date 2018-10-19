@@ -12,7 +12,10 @@ class LaporanSIP extends CI_Controller{
 		//$this->load->view('StokSalesview');
 		$data = array(
 				'data'=>$this->TransaksiSIP_Model->get_laporan());
-		$this->load->view('element/header');
+		$title=array(
+	        'title'=>'Laporan'
+	    );
+		$this->load->view('element/header', $title);
 		$this->load->view('laporanSIPview',$data);
 		$this->load->view('element/footer');
 	}
@@ -20,7 +23,10 @@ class LaporanSIP extends CI_Controller{
     function detail($id){
     	$data = array (
 				'detail' =>$this->TransaksiSIP_Model->get_detail($id));
-		$this->load->view('element/header');
+    	$title=array(
+	        'title'=>'Laporan'
+	    );
+		$this->load->view('element/header', $title);
 		$this->load->view('DetailTransaksiSIP_view', $data);
 		$this->load->view('element/footer');
     }

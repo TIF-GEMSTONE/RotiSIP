@@ -1,11 +1,11 @@
 
       <!-- Example DataTables Card-->
-      <!-- <div class="card mb-2">
+      <div class="card mb-2">
         <div class="card-header">
           <i class="fa fa-table"></i>Transaksi</div>
         <div class="card-body">
           <div class="table-responsive">
-          <div> -->
+          <div>
 
  <!-- Navigation -->
     <div class="container">

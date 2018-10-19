@@ -9,6 +9,9 @@ class Penjualan extends CI_Controller{
 
 	function index(){
 		$data['data']=$this->roti_model->tampil_roti();
+		$title=array(
+	        'title'=>'Penjualan'
+	    );
 		$this->load->view('element/header');
 		$this->load->view('v_penjualan',$data);
 		$this->load->view('element/footer');

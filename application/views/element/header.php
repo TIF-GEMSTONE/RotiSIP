@@ -144,5 +144,5 @@ body {
         <li class="breadcrumb-item">
           <a href="<?php echo base_url();?>Dashboard/Home">Home</a>
         </li>
-        <li class="breadcrumb-item active">My Home</li>
+        <li class="breadcrumb-item active"><?php echo $title?></li>
       </ol>

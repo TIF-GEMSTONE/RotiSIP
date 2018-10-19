@@ -1,4 +1,9 @@
-
+<div class="card mb-2">
+        <div class="card-header">
+          <i class="fa fa-table"></i>Tambah Data Roti</div>
+        <div class="card-body">
+          <div class="table-responsive">
+          <div>
       <!-- Example DataTables Card-->
       <div class="jumbotron col-md-4" >
        <?=form_open_multipart('login/proses_input')?>
