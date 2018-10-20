@@ -1,98 +1,73 @@
 
-      <div class="card mb-2">
-        <div class="card-header">
-          <i class="fa fa-table"></i>Data Pesanan</div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-               <thead>
-          <div>
-          <p>
-            
+<div class="card mb-2">
+  <div class="card-header">
+    <h2> Input Pesanan</h2></div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+           <thead>
+
             <div class="container">
 
-              <th>
-                
-            <div class="form-group row">
-            <div class="col-xs-4" >
+            <th>
             <form method="post" action="input">   
-            <label  for="nama">Nama Pemesan:</label>
-            <input class="form-control" placeholder="Masukan Nama" type="text" name="nama_pemesan" value="<?php if(isset($data)) { echo $data[0]->nama_pemesan; } ?>">
-            </div>
-          </div>
 
-              <div class="form-group row">
-              <div class="col-xs-4">
-              <label for="nomor">Nomer Telepon: </label>
-              <input class="form-control" placeholder="Masukan Nomor" type="text" name="no_telp" value="<?php if(isset($data)) { echo $data[0]->no_telp; } ?>">
-    
-                </div>
-          </div>
-
-            <div class="container">
-              <div class="form-group row">
-              <div class="col-xs-4">
-              <label for="Pesan">Tanggal Ambil:</label>
-              <input class="form-control" type="date" name="tgl_ambil" value="<?php if(isset($data)) { echo $data[0]->tgl_ambil; } ?>">
-            </div>
-          </div>
-        </div>
-
-            <div class="container">
-              <div class="form-group row">
-              <div class="col-xs-4">
-              <label for="Pesan">Jam Ambil:</label>
-              <input class="form-control" type="time" name="jam_ambil" value="<?php if(isset($data)) { echo $data[0]->jam_ambil; } ?>">
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-              <div class="form-group row">
-              <div class="col-xs-4">
-              <label for="alamat">Alamat</label>
-              <input class="form-control" type="textarea" name="alamat" value="<?php if(isset($data)) { echo $data[0]->alamat_antar; } ?>">
-          </div>
-        </div>
-      </div>
-
-              
-
+            <div class="form-group row">
+              <div class="col-sm-4" >
+                <label  for="nama">Nama Pemesan:</label>
+                <input class="form-control" placeholder="Masukan Nama" type="text" name="nama_pemesan" value="<?php if(isset($data)) { echo $data[0]->nama_pemesan; } ?>">
               </div>
-            </td>
+              
+              <div class="col-sm-4">
+              <label for="nomor">Nomer Telepon: </label>
+                <input class="form-control" placeholder="Masukan Nomor" type="text" name="no_telp" value="<?php if(isset($data)) { echo $data[0]->no_telp; } ?>">
+                </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <label for="alamat">Alamat</label>
+                <input class="form-control" type="textarea" name="alamat" value="<?php if(isset($data)) { echo $data[0]->alamat_antar; } ?>">
+              </div>          
+   
+              <div class="col-sm-2">
+                <label for="Pesan">Jam Ambil:</label>
+                <input class="form-control" type="time" name="jam_ambil" value="<?php if(isset($data)) { echo $data[0]->jam_ambil; } ?>">
+              </div>
+
+              <div class="col-sm-3">
+                <label for="Pesan">Tanggal Ambil:</label>
+                <input class="form-control" type="date" name="tgl_ambil" value="<?php if(isset($data)) { echo $data[0]->tgl_ambil; } ?>">
+              </div>
+            </div>
+
+            </div>
           </form>
           </p>
-    </div>
+        </div>
         </div>
 
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-              <div class="row">
-            <div class="col-lg-12">
-                    <a href="#" data-toggle="modal" data-target="#largeModal" class="pull-right"><small>Cari Roti</small></a>
-                </h1> 
+      <div class="row">
+        <div class="col-lg-12">
+            <a href="#" data-toggle="modal" data-target="#largeModal" class="pull-right"><small>Cari Roti</small></a>
             </div>
         </div>
-        <!-- /.row -->
-        <!-- Projects Row -->
+
         <div class="row">
             <div class="col-lg-12">
             <form action="<?php echo base_url().'Penjualan/add_to_cart'?>" method="post">
-            <table>
-                <tr>
-                    <th>ID Roti</th>
-                </tr>
-                <tr>
-                    <th><input type="text" name="id_roti" id="id_roti" class="form-control input-sm"></th>                     
-                </tr>
+            <table border="0">
+                <td>
+                    <th>Cari Roti</th>
+                </td>
+                <td>
+                    <th><input type="text" placeholder="nama roti" name="nama_roti" id="nama_roti" class="form-control input-sm"></th>                     
+                </td>
                     <div id="detail_roti" style="position:absolute;">
                     </div>
             </table>
              </form>
+
             <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;">
                 <thead>
                     <tr>
@@ -121,6 +96,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+
             <form action="<?php echo base_url().'Penjualan/simpan_penjualan'?>" method="post">
             <table>
                 <tr>
@@ -139,7 +115,6 @@
                     <th>Kembalian(Rp)</th>
                     <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
                 </tr>
-
             </table>
             </form>
             <hr/>
