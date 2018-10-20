@@ -12,7 +12,7 @@ class Penjualan extends CI_Controller{
 		$title=array(
 	        'title'=>'Penjualan'
 	    );
-		$this->load->view('element/header');
+		$this->load->view('element/header', $title);
 		$this->load->view('v_penjualan',$data);
 		$this->load->view('element/footer');
 
