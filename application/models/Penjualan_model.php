@@ -18,11 +18,17 @@ class Penjualan_model extends CI_Model {
 		return true;
 	}
 
-	function search_blog($title){
+	function search($title){
         $this->db->like('nama_roti', $title , 'both');
         $this->db->order_by('nama_roti', 'ASC');
         $this->db->limit(10);
         return $this->db->get('tabel_roti')->result();
+    }
+
+    function insert($roti){
+    	$this->db->like('nama_roti', $roti);
+    	$result = $this->db->get('tabel_roti')->result(); 
+    	return $result;
     }
 
 	function get_notrans(){

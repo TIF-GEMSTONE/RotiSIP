@@ -25,7 +25,7 @@
             <div class="col-lg-12">
             <form>
                 <label>Cari Roti</label>
-                <input type="text" class="form-control" id="title" placeholder="nama roti" style="width:500px;">
+                <input type="text" class="form-control" id="title" placeholder="nama roti" style="width:200px;">
             </form>
         </div>
         <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
@@ -58,14 +58,15 @@
                     <?php foreach ($this->cart->contents() as $items): ?>
                     <?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
                     <tr>
-                         <td><?=$items['id'];?></td>
-                         <td><?=$items['name'];?></td>
+                         <td><?=$items['id_roti'];?></td>
+                         <td><?=$items['nama_roti'];?></td>
                          <td style="text-align:right;"><?php echo number_format($items['amount']);?></td>
                          <td style="text-align:center;"><?php echo number_format($items['qty']);?></td>
                          <td style="text-align:right;"><?php echo number_format($items['subtotal']);?></td>
                          <td style="text-align:center;"><a href="<?php echo base_url().'Penjualan/remove/'.$items['rowid'];?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
                     </tr>
                     
+                   
                     <?php $i++; ?>
                     <?php endforeach; ?>
                 </tbody>
@@ -116,7 +117,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php 
+
+                <?php
+                    $no=0;
+                  if( ! empty($list)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
+                    foreach($list as $data){ // Lakukan looping pada variabel siswa dari controller
+                      echo "<tr>";
+                      echo "<td>".$no."</td>";
+                      echo "<td>".$data->id_roti."</td>";
+                      echo "<td>".$data->nama_roti."</td>";
+                      echo number_format("<td>".$data->harga."</td>");
+                      // echo "<td>".$data->telp."</td>";
+                      // echo "<td>".$data->alamat."</td>";
+                      echo "</tr>";
+                    }
+                  }else{ // Jika data tidak ada
+                    echo "<tr><td colspan='4'>Data tidak ada</td></tr>";
+                  }
+                  ?>
+                   <!--  <?php 
                         $no=0;
                         foreach ($data->result_array() as $a):
                             $no++;
@@ -140,7 +159,7 @@
                                 <button type="submit" class="btn btn-xs btn-info" title="Pilih"><span class="fa fa-edit"></span> Pilih</button>
                             </form>
                             </td>
-                        </tr>
+                        </tr> -->
                     <?php endforeach;?>
                     </tbody>
                 </table>          

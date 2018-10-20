@@ -16,25 +16,22 @@ class Penjualan extends CI_Controller{
 		$this->load->view('v_penjualan',$data);
 		// $this->load->view('element/footer');
 		
-		if (isset($_GET['term'])) {
-            $result = $this->Penjualan_model->search_blog($_GET['term']);
-            if (count($result) > 0) {
-            foreach ($result as $row)
-                $arr_result[] = $row->nama_roti;
-                echo json_encode($arr_result);
-            }
-        }
 	}
 
-	function get_autocomplete(){
+	public function get_autocomplete(){
         if (isset($_GET['term'])) {
-            $result = $this->Penjualan_model->search_blog($_GET['term']);
+            $result = $this->Penjualan_model->search($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
                 $arr_result[] = $row->nama_roti;
                 echo json_encode($arr_result);
             }
         }
+    }
+
+    function insert(){
+        $list = $this->Penjualan_model->insert($arr_result);
+        $this->load->view('v_penjualan', $list);
     }
 
 	function get_roti(){
