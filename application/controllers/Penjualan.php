@@ -14,9 +14,20 @@ class Penjualan extends CI_Controller{
 	    );
 		$this->load->view('element/header', $title);
 		$this->load->view('v_penjualan',$data);
-		$this->load->view('element/footer');
+		// $this->load->view('element/footer');
 
 	}
+
+	function get_autocomplete(){
+        if (isset($_GET['term'])) {
+            $result = $this->Penjualan_model->search_blog($_GET['term']);
+            if (count($result) > 0) {
+            foreach ($result as $row)
+                $arr_result[] = $row->nama_roti;
+                echo json_encode($arr_result);
+            }
+        }
+    }
 
 	function get_roti(){
 		$id_roti=$this->input->post('id_roti');
@@ -36,30 +47,31 @@ class Penjualan extends CI_Controller{
                'qty'      => $this->input->post('qty'),
                'amount'	  => str_replace(",", "", $this->input->post('harga'))
             );
-	if(!empty($this->cart->total_items())){
-		foreach ($this->cart->contents() as $items){
-			$id=$items['id'];
-			$qtylama=$items['qty'];
-			$rowid=$items['rowid'];
-			$id_roti=$this->input->post('id_roti');
-			$qty=$this->input->post('qty');
-			if($id==$id_roti){
-				$up=array(
-					'rowid'=> $rowid,
-					'qty'=>$qtylama+$qty
-					);
-				$this->cart->update($up);
-			}else{
-				$this->cart->insert($data);
+
+		if(!empty($this->cart->total_items())){
+			foreach ($this->cart->contents() as $items){
+				$id=$items['id'];
+				$qtylama=$items['qty'];
+				$rowid=$items['rowid'];
+				$id_roti=$this->input->post('id_roti');
+				$qty=$this->input->post('qty');
+				if($id==$id_roti){
+					$up=array(
+						'rowid'=> $rowid,
+						'qty'=>$qtylama+$qty
+						);
+					$this->cart->update($up);
+				}else{
+					$this->cart->insert($data);
+				}
 			}
+		}else{
+			$this->cart->insert($data);
 		}
-	}else{
-		$this->cart->insert($data);
-	}
 
-		redirect('Penjualan');
+			redirect('Penjualan');
 
-	}
+		}
 
 	function remove(){
 		$row_id=$this->uri->segment(4);

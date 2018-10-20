@@ -1,15 +1,11 @@
 
 <div class="card mb-2">
   <div class="card-header">
-    <h2> Input Pesanan</h2></div>
+    <h3> Input Pesanan</h3></div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-           <thead>
-
             <div class="container">
 
-            <th>
             <form method="post" action="input">   
 
             <div class="form-group row">
@@ -43,9 +39,6 @@
 
             </div>
           </form>
-          </p>
-        </div>
-        </div>
 
       <div class="row">
         <div class="col-lg-12">
@@ -56,13 +49,13 @@
         <div class="row">
             <div class="col-lg-12">
             <form action="<?php echo base_url().'Penjualan/add_to_cart'?>" method="post">
-            <table border="0">
-                <td>
+            <table>
+                <tr>
                     <th>Cari Roti</th>
-                </td>
-                <td>
+                </tr>
+                <tr>
                     <th><input type="text" placeholder="nama roti" name="nama_roti" id="nama_roti" class="form-control input-sm"></th>                     
-                </td>
+                </tr>
                     <div id="detail_roti" style="position:absolute;">
                     </div>
             </table>
@@ -122,3 +115,6 @@
             
             <input type="submit" class="btn btn-success" name="btnTambah" value="Simpan"/>
               <a class="btn btn-warning" href="<?php echo base_url()?>Pesanan">Kembali</a>
+
+</div>
+</div></div></div>

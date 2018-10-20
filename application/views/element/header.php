@@ -16,6 +16,8 @@
   <link href="<?php echo base_url ('assets/vendor/datatables/dataTables.bootstrap4.css');?>" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url ('assets/css/sb-admin.css');?>" rel="stylesheet">
+  <meta charset="utf-8">
+    <link rel="stylesheet" href="<?php echo base_url().'assets/css/jquery-ui.css'?>">
 </head>
 <style>
  * {

@@ -2,7 +2,7 @@
       <!-- Example DataTables Card-->
       <div class="card mb-2">
         <div class="card-header">
-          <i class="fa fa-table"></i>Transaksi</div>
+          <h3>Input Transaksi</h3></div>
         <div class="card-body">
           <div class="table-responsive">
           <div>
@@ -20,22 +20,28 @@
                 </h1> 
             </div>
         </div>
-        <!-- /.row -->
-        <!-- Projects Row -->
+
         <div class="row">
             <div class="col-lg-12">
-            <form action="<?php echo base_url().'Penjualan/add_to_cart'?>" method="post">
-            <table>
-                <tr>
-                    <th>ID Roti</th>
-                </tr>
-                <tr>
-                    <th><input type="text" name="id_roti" id="id_roti" class="form-control input-sm"></th>                     
-                </tr>
-                    <div id="detail_roti" style="position:absolute;">
-                    </div>
-            </table>
-             </form>
+            <form>
+                <label>Cari Roti</label>
+                <input type="text" class="form-control" id="title" placeholder="nama roti" style="width:500px;">
+            </form>
+        </div>
+        <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
+        <script src="<?php echo base_url().'assets/js/bootstrap.js'?>" type="text/javascript"></script>
+        <script src="<?php echo base_url().'assets/js/jquery-ui.js'?>" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $( "#title" ).autocomplete({
+                  source: "<?php echo site_url('Penjualan/get_autocomplete/?');?>"
+                });
+            });
+        </script>
+
+                
+        </div>
+
             <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;">
                 <thead>
                     <tr>
@@ -149,16 +155,6 @@
             </div>
         </div>
 
-        <!-- ============ MODAL HAPUS =============== -->
-        
-
-        <!--END MODAL-->
-
-        <hr>
-
-        <!-- Footer -->
-        
-
     </div>
     <!-- /.container -->
 
@@ -242,7 +238,3 @@
             });
         });
     </script>
-    
-        </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-      </div>

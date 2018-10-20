@@ -17,6 +17,14 @@ class Penjualan_model extends CI_Model {
 		}
 		return true;
 	}
+
+	function search_blog($title){
+        $this->db->like('nama_roti', $title , 'both');
+        $this->db->order_by('nama_roti', 'ASC');
+        $this->db->limit(10);
+        return $this->db->get('tabel_roti')->result();
+    }
+
 	function get_notrans(){
 		$q = $this->db->query("SELECT MAX(RIGHT(no_transaksi,1)) AS kd_max FROM tabel_transaksi");
         $kd = "";
