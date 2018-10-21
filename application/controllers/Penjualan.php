@@ -27,7 +27,10 @@ class Penjualan extends CI_Controller{
             $result = $this->Penjualan_model->search($_GET['term']);
             if (count($result) > 0) {
             foreach ($result as $row)
-                $arr_result[] = $row->nama_roti;
+                $arr_result[] = array(
+                	'label'=> $row->nama_roti,
+                	'id_roti' => $row->id_roti
+                );
                 echo json_encode($arr_result);
             }
         }

@@ -51,7 +51,9 @@
       
                 select: function (event, ui) {
                     $(this).val(ui.item.label);
-                    $("#form_search").submit(); 
+                    $('[name="id_roti"]').val(ui.item.id_roti);
+                    $('[name="nama_roti"]').val(ui.item.label);
+                
                 }
             });
             });
@@ -61,12 +63,12 @@
         <div class="form-group row">
             <div class="col-sm-3" >
                 <label  for="nama">Id Roti:</label>
-                <input class="form-control" type="text" name="nama_pemesan"  >
+                <input class="form-control" type="text" name="id_roti" readonly>
               </div>
 
               <div class="col-sm-3" >
                 <label  for="nama">Nama Roti:</label>
-                <input class="form-control" type="text" name="nama_pemesan" >
+                <input class="form-control" type="text" name="nama_roti" readonly >
               </div>
               
               <div class="col-lg-3">
