@@ -24,9 +24,10 @@
         <div class="row">
             <div class="col-lg-12">
             <form>
-                <label>Cari Roti</label>
-                <input type="text" class="form-control" id="title" placeholder="nama roti" style="width:200px;">
-            </form>
+                <label>No Transaksi</label>
+                <input type="text" class="form-control" id="transaksi" placeholder="transaksi" style="width:200px;" value="<?php echo $kode;?>" readonly>
+                <label>Cari Roti</label><input type="text" class="form-control" id="title" placeholder="nama roti" style="width:200px;">
+                            </form>
         </div>
         <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/bootstrap.js'?>" type="text/javascript"></script>

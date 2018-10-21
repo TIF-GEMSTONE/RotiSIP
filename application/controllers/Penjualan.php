@@ -8,14 +8,18 @@ class Penjualan extends CI_Controller{
 	}
 
 	function index(){
+
 		$data['data']=$this->roti_model->tampil_roti();
 		$title=array(
 	        'title'=>'Penjualan'
-	    );
+	    );	    	    
+	    $kode['kode'] = $this->Penjualan_model->get_notrans();
 		$this->load->view('element/header', $title);
-		$this->load->view('v_penjualan',$data);
-		// $this->load->view('element/footer');
+		$this->load->view('v_penjualan',$data+$kode);
 		
+		// $this->load->view('element/footer');
+		 // variable $kodeunik merujuk ke file model_user.php pada function buat_kode. paham kan ya? harus paham dong
+       
 	}
 
 	public function get_autocomplete(){
