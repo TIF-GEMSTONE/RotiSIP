@@ -22,7 +22,7 @@ class Penjualan extends CI_Controller{
        
 	}
 
-	public function get_autocomplete(){
+	public function get_autocomplete(){    //membuat dropdown pilihan di search box
         if (isset($_GET['term'])) {
             $result = $this->Penjualan_model->search($_GET['term']);
             if (count($result) > 0) {
@@ -33,9 +33,11 @@ class Penjualan extends CI_Controller{
         }
     }
 
-    function insert(){
-        $list = $this->Penjualan_model->insert($arr_result);
-        $this->load->view('v_penjualan', $list);
+   function search(){ //sub keyword searching
+        $title=$this->input->get('title');
+        $data['data']=$this->Penjualan_model->search($title);
+ 
+        $this->load->view('search_view',$data);
     }
 
 	function get_roti(){

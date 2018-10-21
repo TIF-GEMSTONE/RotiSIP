@@ -21,27 +21,43 @@
             </div>
         </div>
 
+        <!-- coding untuk searching -->
+
         <div class="row">
             <div class="col-lg-12">
-            <form>
+            
                 <label>No Transaksi</label>
                 <input type="text" class="form-control" id="transaksi" placeholder="transaksi" style="width:200px;" value="<?php echo $kode;?>" readonly>
-                <label>Cari Roti</label><input type="text" class="form-control" id="title" placeholder="nama roti" style="width:200px;">
-                            </form>
+
+            <form id="form_search" action="<?php echo site_url('Penjualan/search');?>" method="GET">
+                <label>Cari Roti</label>
+                <div class="input-group">
+                    <input type="text" name="title" class="form-control" id="title" placeholder="nama_roti" style="width:200px;">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit">Search</button>
+                    </span>
+                 </div>
+            </form>
+
         </div>
         <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/bootstrap.js'?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery-ui.js'?>" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                $( "#title" ).autocomplete({
-                  source: "<?php echo site_url('Penjualan/get_autocomplete/?');?>"
-                });
+                $('#title').autocomplete({
+                source: "<?php echo site_url('Penjualan/get_autocomplete');?>",
+      
+                select: function (event, ui) {
+                    $(this).val(ui.item.label);
+                    $("#form_search").submit(); 
+                }
             });
-        </script>
-
-                
+            });
+        </script> 
         </div>
+
+        <!-- tampilan tabel roti yang dibeli -->
 
             <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;">
                 <thead>
@@ -66,12 +82,11 @@
                          <td style="text-align:right;"><?php echo number_format($items['subtotal']);?></td>
                          <td style="text-align:center;"><a href="<?php echo base_url().'Penjualan/remove/'.$items['rowid'];?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
                     </tr>
-                    
-                   
                     <?php $i++; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
+
             <form action="<?php echo base_url().'Penjualan/simpan_penjualan'?>" method="post">
             <table>
                 <tr>
