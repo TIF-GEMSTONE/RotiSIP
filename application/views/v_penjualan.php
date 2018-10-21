@@ -24,7 +24,15 @@
         <!-- coding untuk searching -->
 
         <div class="row">
+<<<<<<< HEAD
             <div class="col-lg-9">
+=======
+            <div class="col-lg-12">
+            
+                <label>No Transaksi</label>
+                <input type="text" class="form-control" id="transaksi" placeholder="transaksi" style="width:200px;" value="<?php echo $kode;?>" readonly>
+
+>>>>>>> 8981a0d5678be81f5af4d0005f87862ad54a6e5f
             <form id="form_search" action="<?php echo site_url('Penjualan/search');?>" method="GET">
                 <label>Cari Roti</label>
                 <div class="input-group">

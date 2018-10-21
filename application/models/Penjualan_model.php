@@ -1,5 +1,6 @@
 <?php
 class Penjualan_model extends CI_Model {
+	
 
 	function simpan_penjualan($notrans,$total_jual,$uang,$kembalian){
 		$this->db->query("INSERT INTO tabel_transaksi (no_transaksi,total_jual,uang,kembalian) VALUES ('$notrans','$total_jual','$uang','$kembalian')");
@@ -32,7 +33,7 @@ class Penjualan_model extends CI_Model {
     }
 
 	function get_notrans(){
-		$q = $this->db->query("SELECT MAX(RIGHT(no_transaksi,1)) AS kd_max FROM tabel_transaksi");
+		/*$q = $this->db->query("SELECT MAX(RIGHT(no_transaksi,1)) AS kd_max FROM tabel_transaksi");
         $kd = "";
         if($q->num_rows()>0){
             foreach($q->result() as $k){
@@ -41,7 +42,23 @@ class Penjualan_model extends CI_Model {
             }
         }else{
             $kd = "1";
-        }
+        }*/
+          $this->db->select('RIGHT(tabel_transaksi_sip.no_transaksi,4) as kode', FALSE);
+		  $this->db->order_by('no_transaksi','DESC');    
+		  $this->db->limit(1);    
+		  $query = $this->db->get('tabel_transaksi_sip');     
+		  if($query->num_rows() <> 0){      
+		
+		   $data = $query->row();      
+		   $kode = intval($data->kode) + 1;    
+		  }
+		  else {      
+		   //jika kode belum ada      
+		   $kode = 1;    
+		  }
+		  $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
+		  $kodejadi = "TR".$kodemax;  
+		  return $kodejadi;
 	}
 }
 
