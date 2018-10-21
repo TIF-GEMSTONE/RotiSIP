@@ -15,13 +15,15 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Description</th>
+                        <th>Id</th>
+                        <th>Nama</th>
+                        <th>Harga</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach($data as $row):?>
                     <tr>
+                        <td><?php echo $row->id_roti;?></td>
                         <td><?php echo $row->nama_roti;?></td>
                         <td><?php echo $row->harga;?></td>
                     </tr>

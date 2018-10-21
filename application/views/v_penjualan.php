@@ -24,7 +24,7 @@
         <!-- coding untuk searching -->
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-9">
             <form id="form_search" action="<?php echo site_url('Penjualan/search');?>" method="GET">
                 <label>Cari Roti</label>
                 <div class="input-group">
@@ -52,6 +52,26 @@
             });
         </script> 
         </div>
+
+        <div class="form-group row">
+            <div class="col-sm-3" >
+                <label  for="nama">Id Roti:</label>
+                <input class="form-control" type="text" name="nama_pemesan"  >
+              </div>
+
+              <div class="col-sm-3" >
+                <label  for="nama">Nama Roti:</label>
+                <input class="form-control" type="text" name="nama_pemesan" >
+              </div>
+              
+              <div class="col-lg-3">
+              <label for="nomor">Harga: </label>
+                <input class="form-control" placeholder="Masukan Jumlah Beli" type="text" name="no_telp">
+                <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit">Submit</button>
+                    </span>
+                </div>
+            </div>
 
         <!-- tampilan tabel roti yang dibeli -->
 
