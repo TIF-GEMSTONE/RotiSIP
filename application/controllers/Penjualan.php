@@ -36,10 +36,10 @@ class Penjualan extends CI_Controller{
    function search(){ //sub keyword searching
         $title=$this->input->get('title');
         $data['data']=$this->Penjualan_model->search($title);
- 		$title=array(
+ 		$tit=array(
 	        'title'=>'Penjualan'
 	    );
-		$this->load->view('element/header', $title);
+		$this->load->view('element/header', $tit);
         $this->load->view('search_view',$data);
     }
 
