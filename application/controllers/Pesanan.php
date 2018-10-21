@@ -17,6 +17,20 @@ class Pesanan extends CI_Controller{
 		$this->load->view('element/footer');
 	}
 	
+	public function get_autocomplete(){    //membuat dropdown pilihan di search box
+        if (isset($_GET['term'])) {
+            $result = $this->Pesanan_model->search($_GET['term']);
+            if (count($result) > 0) {
+            foreach ($result as $row)
+                $arr_result[] = array(
+                	'label'=> $row->nama_roti,
+                	'id_roti' => $row->id_roti
+                );
+                echo json_encode($arr_result);
+            }
+        }
+    }
+
 	function input(){
 		if (isset($_POST['btnTambah'])){
 			$data = $this->Pesanan_model->input(array (
@@ -44,9 +58,10 @@ class Pesanan extends CI_Controller{
 			$title=array(
 		        'title'=>'Pesanan'
 		    );
+		    $kode['kode'] = $this->Pesanan_model->get_notrans();
 			$this->load->view('element/header', $title);
-			$this->load->view('CreatePesanan_view', $data);
-			$this->load->view('element/footer');
+			$this->load->view('CreatePesanan_view', $data+$kode);
+			// $this->load->view('element/footer');
 		}
 	}
 	function delete($id){
