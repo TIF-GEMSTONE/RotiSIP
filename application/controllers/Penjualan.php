@@ -40,7 +40,7 @@ class Penjualan extends CI_Controller{
 	        'title'=>'Penjualan'
 	    );
 		$this->load->view('element/header', $title);
-        $this->load->view('v_penjualan',$data);
+        $this->load->view('search_view',$data);
     }
 
 	function get_roti(){
