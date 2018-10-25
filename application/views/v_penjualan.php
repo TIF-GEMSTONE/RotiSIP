@@ -25,18 +25,15 @@
 
         <div class="row">
             <div class="col-lg-9">
-            <div class="col-lg-12">
             
                 <label>No Transaksi</label>
                 <input type="text" class="form-control" id="transaksi" placeholder="transaksi" style="width:200px;" value="<?php echo $kode;?>" readonly>
 
-            <form id="form_search" action="<?php echo site_url('Penjualan/search');?>" method="GET">
+            <form id="form_search" action="<?php echo site_url('Penjualan/get_autocomplete');?>" method="GET">
                 <label>Cari Roti</label>
                 <div class="input-group">
                     <input type="text" name="title" class="form-control" id="title" placeholder="nama_roti" style="width:200px;">
-                    <span class="input-group-btn">
-                        <button class="btn btn-info" type="submit">Search</button>
-                    </span>
+                    
                  </div>
             </form>
 
@@ -55,11 +52,13 @@
                     $('[name="nama_roti"]').val(ui.item.label);
                     $('[name="harga"]').val(ui.item.harga);
                 
+
                 }
             });
             });
         </script> 
         </div>
+
         <form id="form_input_detail" action="<?php echo site_url('Penjualan/inputdetail');?>" method="POST">
             <div class="form-group row">
                 
@@ -86,6 +85,7 @@
                   
                 </div>
         </form>
+
         <!-- tampilan tabel roti yang dibeli -->
 
             <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;">

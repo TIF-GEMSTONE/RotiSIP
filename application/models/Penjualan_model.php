@@ -26,10 +26,8 @@ class Penjualan_model extends CI_Model {
         return $this->db->get('tabel_roti')->result();
     }
 
-    function insert($roti){
-    	$this->db->like('nama_roti', $roti);
-    	$result = $this->db->get('tabel_roti')->result(); 
-    	return $result;
+    function insert($data,$table){
+		$this->db->insert($table,$data);
     }
 
 	function get_notrans(){

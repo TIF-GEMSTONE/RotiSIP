@@ -43,5 +43,32 @@ class Pesanan_model extends CI_Model {
     return $this->db->update('tabel_pesanan',$data);
   }
 
+  function search($title){
+        $this->db->like('nama_roti', $title , 'both');
+        $this->db->order_by('nama_roti', 'ASC');
+        $this->db->limit(10);
+        return $this->db->get('tabel_roti')->result();
+    }
+
+
+  function get_notrans(){
+    $this->db->select('RIGHT(tabel_pesanan.id_pesan,4) as kode', FALSE);
+    $this->db->order_by('id_pesan','DESC');    
+    $this->db->limit(1);    
+    $query = $this->db->get('tabel_pesanan');     
+    if($query->num_rows() <> 0){      
+  
+     $data = $query->row();      
+     $kode = intval($data->kode) + 1;    
+    }
+    else {      
+     //jika kode belum ada      
+     $kode = 1;    
+    }
+    $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
+    $kodejadi = "TR".$kodemax;  
+    return $kodejadi;
+}
+
 }
 ?>
