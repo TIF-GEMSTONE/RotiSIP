@@ -6,7 +6,7 @@
           <div>
       <!-- Example DataTables Card-->
       <div class="jumbotron col-md-4" >
-       <?=form_open_multipart('login/proses_input')?>
+       <?=form_open_multipart('Dashboard/proses_input')?>
         <div class="form-group">
           <label for="nama">Nama :</label>
           <input type="text" name="nama_roti" class="form-control" placeholder="Masukan Nama Roti" id="nama_roti" required>

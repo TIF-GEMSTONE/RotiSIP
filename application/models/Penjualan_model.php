@@ -60,7 +60,14 @@ class Penjualan_model extends CI_Model {
 		  $kodejadi = "TR".$kodemax;  
 		  return $kodejadi;
 	}
+
+	function input_pesan($data,$table){
+		$this->db->insert($table,$data);
+		
+	}
+
+	function get_penjualan(){
+		return $this->db->get('tabel_detail_sip')->result();
+	}
 }
-
-
 ?>
