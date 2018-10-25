@@ -50,13 +50,13 @@
                     $(this).val(ui.item.label);
                     $('[name="id_roti"]').val(ui.item.id_roti);
                     $('[name="nama_roti"]').val(ui.item.label);
-                
                 }
             });
             });
         </script> 
         </div>
-
+        
+        <form id="form_insert" action="<?php echo site_url('Penjualan/insert');?>" method="POST">  
         <div class="form-group row">
             <div class="col-sm-3" >
                 <label  for="nama">Id Roti:</label>
@@ -67,15 +67,16 @@
                 <label  for="nama">Nama Roti:</label>
                 <input class="form-control" type="text" name="nama_roti" readonly >
               </div>
-              
+
               <div class="col-lg-3">
-              <label for="nomor">Harga: </label>
-                <input class="form-control" placeholder="Masukan Jumlah Beli" type="text" name="no_telp">
+              <label for="nomor">Jumlah: </label>
+                <input class="form-control" placeholder="Masukan Jumlah Beli" type="text" name="jumlah">
                 <span class="input-group-btn">
                         <button class="btn btn-info" type="submit">Submit</button>
                     </span>
                 </div>
             </div>
+        </form>
 
         <!-- tampilan tabel roti yang dibeli -->
 

@@ -35,16 +35,21 @@ class Penjualan extends CI_Controller{
             }
         }
     }
+	
+	function insert(){
+		$id_roti = $this->input->post('id_roti');
+		$nama_roti = $this->input->post('nama_roti');
+		$jumlah = $this->input->post('jumlah');
 
-   function search(){ //sub keyword searching
-        $title=$this->input->get('title');
-        $data['data']=$this->Penjualan_model->search($title);
- 		$tit=array(
-	        'title'=>'Penjualan'
-	    );
-		$this->load->view('element/header', $tit);
-        $this->load->view('search_view',$data);
-    }
+		//gk ro teko endi no transaksine
+		//njupuk harga e , trus ngitung harga x jumlah ndek endi yo gk paham T.T
+		$data = array(
+			'id_roti' => $id_roti,
+			'nama_roti' => $nama_roti,
+			'jumlah' => $jumlah
+			);
+		$this->Penjualan_model->insert($data,'tabel_detail_sip');
+	} 
 
 	function get_roti(){
 		$id_roti=$this->input->post('id_roti');
