@@ -10,23 +10,23 @@
                 <button data-toggle="modal" data-target="#tambah-data" class="btn btn-primary">
                   <i class="glyphicon glyphicon-pencil"></i>
                   Tambah Data Roti
-                </button>
+                </button></a>
               </p>
           </div>
          
         <div class="table-responsive">
              <table class="table table-bordered" id="dataTable" width="70%" cellspacing="0">
               <tr>
-                <th style="text-align:center;">No. </th>
-                <th style="text-align:center;">Nama Roti</th>
-                <th style="text-align:center;">Harga</th>
+                <th style="text-align:left;">No. </th>
+                <th style="text-align:left;">Nama Roti</th>
+                <th style="text-align:left;">Harga</th>
                 <th colspan="2" style="text-align:center;">Aksi</th>
               </tr>
               <tr>
               <?php foreach ($produk as $p){ ?>
-                <td style="text-align:center;"><?php echo $p->id_roti ?></td>
-                <td style="text-align:center;"><?php echo $p->nama_roti ?></td>
-                <td style="text-align:center;"><?php echo number_format($p->harga,0,",","."); ?></td>
+                <td style="text-align:left;"><?php echo $p->id_roti ?></td>
+                <td style="text-align:left;"><?php echo $p->nama_roti ?></td>
+                <td style="text-align:left;"><?php echo number_format($p->harga,0,",","."); ?></td>
                 <td style="text-align:center;">
                   <a href="javascript:;"
                             data-id_roti="<?php echo $p->id_roti ?>"
