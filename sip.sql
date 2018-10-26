@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2018 at 08:13 AM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Generation Time: Oct 26, 2018 at 03:07 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -50,7 +48,7 @@ INSERT INTO `tabel_detail_pesan` (`id_pesan`, `id_roti`, `jumlah_roti`) VALUES
 --
 
 CREATE TABLE `tabel_detail_sip` (
-  `no_transaksi` int(11) NOT NULL,
+  `no_transaksi` varchar(7) NOT NULL,
   `id_roti` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
@@ -58,15 +56,13 @@ CREATE TABLE `tabel_detail_sip` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Triggers `tabel_detail_sip`
+-- Dumping data for table `tabel_detail_sip`
 --
-DELIMITER $$
-CREATE TRIGGER `T_sip` AFTER INSERT ON `tabel_detail_sip` FOR EACH ROW BEGIN
-UPDATE tabel_roti SET stok=stok-NEW.jumlah
-WHERE id_roti = NEW.id_roti;
-END
-$$
-DELIMITER ;
+
+INSERT INTO `tabel_detail_sip` (`no_transaksi`, `id_roti`, `harga`, `jumlah`, `total`) VALUES
+('TR0001', 70005, 9000, 10, 90000),
+('TR0001', 70001, 3000, 43, 129000),
+('TR0001', 70003, 3500, 12, 42000);
 
 -- --------------------------------------------------------
 
@@ -144,7 +140,8 @@ INSERT INTO `tabel_roti` (`id_roti`, `nama_roti`, `harga`, `tgl_produksi`, `tgl_
 (70005, 'Roti Kenong', 9000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotikenong.jpg'),
 (70006, 'Roti Sobek', 8500, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotisobek.jpg'),
 (70007, 'Roti Tawar', 10000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotitawar.jpg'),
-(70009, 'Roti Strawberry', 2000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotistrw.jpg');
+(70009, 'Roti Strawberry', 2000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotistrw.jpg'),
+(70010, 'asd', 123, '2018-10-25 10:02:12', '0000-00-00', '7.png');
 
 -- --------------------------------------------------------
 
@@ -153,7 +150,7 @@ INSERT INTO `tabel_roti` (`id_roti`, `nama_roti`, `harga`, `tgl_produksi`, `tgl_
 --
 
 CREATE TABLE `tabel_transaksi_sip` (
-  `no_transaksi` int(11) NOT NULL,
+  `no_transaksi` varchar(8) NOT NULL,
   `id_pegawai` int(11) NOT NULL,
   `tgl_transaksi` date NOT NULL,
   `total_jual` double NOT NULL,
@@ -228,7 +225,7 @@ ALTER TABLE `tabel_pesanan`
 -- AUTO_INCREMENT for table `tabel_roti`
 --
 ALTER TABLE `tabel_roti`
-  MODIFY `id_roti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70010;
+  MODIFY `id_roti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70011;
 --
 -- Constraints for dumped tables
 --
@@ -244,8 +241,7 @@ ALTER TABLE `tabel_detail_pesan`
 -- Constraints for table `tabel_detail_sip`
 --
 ALTER TABLE `tabel_detail_sip`
-  ADD CONSTRAINT `tabel_detail_sip_ibfk_1` FOREIGN KEY (`id_roti`) REFERENCES `tabel_roti` (`id_roti`),
-  ADD CONSTRAINT `tabel_detail_sip_ibfk_2` FOREIGN KEY (`no_transaksi`) REFERENCES `tabel_transaksi_sip` (`no_transaksi`);
+  ADD CONSTRAINT `tabel_detail_sip_ibfk_1` FOREIGN KEY (`id_roti`) REFERENCES `tabel_roti` (`id_roti`);
 
 --
 -- Constraints for table `tabel_pesanan`
@@ -258,7 +254,6 @@ ALTER TABLE `tabel_pesanan`
 --
 ALTER TABLE `tabel_transaksi_sip`
   ADD CONSTRAINT `tabel_transaksi_sip_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `tabel_pegawai` (`id_pegawai`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

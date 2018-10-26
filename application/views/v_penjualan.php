@@ -102,14 +102,14 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($tabel_detail_sip as $items){ ?>
-                    
+
                     <tr>
                          <td><?php echo $items->id_roti;?></td>
                          <td><?php  echo $items->nama_roti;?></td>
                          <td style="text-align:right;"><?php echo number_format($items->harga);?></td>
                          <td style="text-align:center;"><?php echo number_format($items->jumlah);?></td>
                          <td style="text-align:right;"><?php echo number_format($items->total);?></td>
-                         <td style="text-align:center;"><a href="<?php echo base_url().'Penjualan/remove/'.$items->rowid;?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
+                         <td style="text-align:center;"><a href="<?php echo base_url().'Penjualan/remove/'.$items->id_roti;?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
                     </tr>
                     <?php $i++; ?>
                     <?php } ?>
@@ -121,8 +121,8 @@
                 <tr>
                     <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td>
                     <th style="width:140px;">Total(Rp)</th>
-                    <th style="text-align:right;width:140px;"><input type="text" name="total2" value="<?php echo number_format($this->cart->total());?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
-                    <input type="hidden" id="total" name="total" value="<?php echo $this->cart->total();?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
+                    <th style="text-align:right;width:140px;"><input type="text" name="total2" value="<?php echo number_format($total[0]->total);?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" ></th>
+                    <input type="hidden" id="total" name="total" value="<?php echo $total[0]->total;?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
                 </tr>
                 <tr>
                     <th>Bayar(Rp)</th>

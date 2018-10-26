@@ -64,8 +64,24 @@ class Penjualan_model extends CI_Model {
 		
 	}
 
-	function get_penjualan(){
-		return $this->db->get('tabel_detail_sip')->result();
+	function get_penjualan($kode){
+		$this->db->select('*');
+ 		$this->db->from('tabel_detail_sip');
+ 		$this->db->join('tabel_roti','tabel_detail_sip.id_roti=tabel_roti.id_roti');
+ 		$this->db->where('no_transaksi', $kode);
+ 		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function cek_pesanan($no_transaksi,$id_roti){
+		$query = $this->db->query("SELECT * FROM `tabel_detail_sip` WHERE no_transaksi='".$no_transaksi."' AND id_roti='".$id_roti."'");
+		return $query->result();
+	}
+
+	function total($kode){
+		$query = $this->db->query("SELECT SUM(total) as total FROM `tabel_detail_sip` WHERE no_transaksi='".$kode."'");
+		return $query->result();
 	}
 }
+
 ?>
