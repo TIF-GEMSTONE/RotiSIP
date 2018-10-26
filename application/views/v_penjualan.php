@@ -1,12 +1,5 @@
 
-      <!-- Example DataTables Card-->
-      <div class="card mb-2">
-        <div class="card-header">
-          <h3>Input Transaksi</h3></div>
-        <div class="card-body">
-          <div class="table-responsive">
-          <div>
-
+    
  <!-- Navigation -->
     <div class="container">
 

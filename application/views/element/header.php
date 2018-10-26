@@ -98,6 +98,12 @@ body {
         </li>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+            <a class="nav-link" href="<?php echo base_url();?>Grafik">
+            <i class="fa fa-fw fa-link"></i>
+            <span class="nav-link-text">Grafik Penjualan</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
             <a class="nav-link" href="<?php echo base_url();?>LaporanSIP">
             <i class="fa fa-fw fa-link"></i>
             <span class="nav-link-text">Laporan</span>

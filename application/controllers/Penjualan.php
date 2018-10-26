@@ -19,7 +19,6 @@ class Penjualan extends CI_Controller{
 		$this->load->view('element/header', $title);
 		$this->load->view('v_penjualan',$data+$kode+$tabel_detail_sip);
 		
-		// $this->load->view('element/footer');
 		 // variable $kodeunik merujuk ke file model_user.php pada function buat_kode. paham kan ya? harus paham dong
        
 	}
