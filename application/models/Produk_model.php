@@ -29,12 +29,12 @@ class Produk_model extends CI_Model {
      $this->db->where('id', $id);
      return $this->db->get('tabel_roti')->row();
    }
- public function ubah($id, $data) {
-     try{
-       $this->db->where('id',$id)->limit(1)->update('tabel_roti', $data);
-       return true;
-     }catch(Exception $e){}
- }
+
+function ubah($data, $id){
+    $this->db->where('id_roti',$id);
+    $this->db->update('tabel_roti', $data);
+    return TRUE;
+}
 
  public function hapus($id){
    $this->db->where('id', $id);

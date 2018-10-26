@@ -136,12 +136,23 @@ class Dashboard extends CI_Controller{
 	// 	redirect('Dashboard/Home'); //mengalihkan halaman
 	//   }
 
- //  	public function hapus($id){
-	//   $gambar = $this->Produk_model>gambar($id);
-	//   unlink('assets/images/'.$gambar->gambar);
-	//   $this->Produk_model>hapus($id);
-	//   redirect('Dashboard/Home'); //mengalihkan halaman
-	// }
+
+  	public function ubah(){
+  	$id_roti = $this->input->post('id_roti');
+    $data = array(
+        'nama_roti'		=> $this->input->post('nama_roti'),
+        'harga'	=> $this->input->post('harga')
+    );
+    $this->Produk_model->ubah($data,$id_roti);
+    $this->session->set_flashdata('notif','<div class="alert alert-success" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+    redirect('Dashboard/Home');
+  	}
+
+  	public function hapus(){
+  		$id_roti = $this->uri->segment(3);
+		$this->db->query("DELETE FROM `tabel_roti` WHERE id_roti='$id_roti'");
+		redirect('Dashboard/Home');
+	}
 	
 }
 ?>
