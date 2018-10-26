@@ -3,9 +3,15 @@
             <i class="fa fa-newspaper-o"></i> Menu Roti</div>
           <hr class="mt-2">
           
+        <!-- Menambahkan Data Roti -->
           <div class="column">
-              
-              <p><a href="<?php echo base_url();?>Dashboard/input" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> Tambah Data Roti</a></p>
+              <p>
+                <a href="javascripts:;">
+                <button data-toggle="modal" data-target="#tambah-data" class="btn btn-primary">
+                  <i class="glyphicon glyphicon-pencil"></i>
+                  Tambah Data Roti
+                </button>
+              </p>
           </div>
          
         <div class="table-responsive">
@@ -35,7 +41,47 @@
            </div> 
          </div>
            
-             <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+           <!-- Modal Tambah -->
+          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="tambah-data" class="modal fade">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                          <h4 class="modal-title">Tambah Data</h4>
+                      </div>
+                      <form class="form-horizontal" action="<?php echo base_url('Dashboard/tambah')?>" method="post" enctype="multipart/form-data" role="form">
+                        <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-2 control-label">Id Roti</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="id_roti" value="<?php echo $kode;?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-2 control-label">Nama Roti</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="nama_roti" placeholder="Tuliskan Nama">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-2 control-label">Harga</label>
+                                    <div class="col-lg-10">
+                                      <input type="number" class="form-control" name="harga" placeholder="Tuliskan Harga"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                            </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Modal Edit -->
+          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
@@ -70,6 +116,18 @@
       $(document).ready(function() {
           // Untuk sunting
           $('#edit-data').on('show.bs.modal', function (event) {
+              var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+              var modal          = $(this)
+ 
+              // Isi nilai pada field
+              modal.find('#id_roti').attr("value",div.data('id_roti'));
+              modal.find('#nama_roti').attr("value",div.data('nama_roti'));
+              modal.find('#harga').html(div.data('harga'));
+          });
+      });
+      $(document).ready(function() {
+          // Untuk sunting
+          $('#tambah-data').on('show.bs.modal', function (event) {
               var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
               var modal          = $(this)
  
