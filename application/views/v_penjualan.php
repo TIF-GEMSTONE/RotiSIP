@@ -18,18 +18,15 @@
 
         <div class="row">
             <div class="col-lg-9">
-            <div class="col-lg-12">
             
                 <label>No Transaksi</label>
                 <input type="text" class="form-control" id="transaksi" placeholder="transaksi" style="width:200px;" value="<?php echo $kode;?>" readonly>
 
-            <form id="form_search" action="<?php echo site_url('Penjualan/search');?>" method="GET">
+            <form id="form_search" action="<?php echo site_url('Penjualan/get_autocomplete');?>" method="GET">
                 <label>Cari Roti</label>
                 <div class="input-group">
                     <input type="text" name="title" class="form-control" id="title" placeholder="nama_roti" style="width:200px;">
-                    <span class="input-group-btn">
-                        <button class="btn btn-info" type="submit">Search</button>
-                    </span>
+                    
                  </div>
             </form>
 
@@ -46,32 +43,41 @@
                     $(this).val(ui.item.label);
                     $('[name="id_roti"]').val(ui.item.id_roti);
                     $('[name="nama_roti"]').val(ui.item.label);
+                    $('[name="harga"]').val(ui.item.harga);
                 
+
                 }
             });
             });
         </script> 
         </div>
 
-        <div class="form-group row">
-            <div class="col-sm-3" >
-                <label  for="nama">Id Roti:</label>
-                <input class="form-control" type="text" name="id_roti" readonly>
-              </div>
+        <form id="form_input_detail" action="<?php echo site_url('Penjualan/inputdetail');?>" method="POST">
+            <div class="form-group row">
+                
+                    <input class="form-control" type="hidden" name="id_roti" readonly>
+                 
+                  <div class="col-sm-3" >
+                    <label  for="nama">Nama Roti:</label>
+                    <input class="form-control" type="text" name="nama_roti" readonly >
+                    <input type="hidden" class="form-control" name="no_transaksi" id="no_transaksi" value="<?php echo $kode;?>" readonly>
+                  </div>
 
-              <div class="col-sm-3" >
-                <label  for="nama">Nama Roti:</label>
-                <input class="form-control" type="text" name="nama_roti" readonly >
-              </div>
-              
-              <div class="col-lg-3">
-              <label for="nomor">Harga: </label>
-                <input class="form-control" placeholder="Masukan Jumlah Beli" type="text" name="no_telp">
-                <span class="input-group-btn">
-                        <button class="btn btn-info" type="submit">Submit</button>
-                    </span>
+                  <div class="col-sm-3" >
+                    <label  for="nama">Harga:</label>
+                    <input class="form-control" type="text" name="harga" readonly >
+                    
+                  </div>
+                  
+                  <div class="col-lg-6">
+                  <label for="nomor">Jumlah: </label>
+                  <input class="form-control" placeholder="Masukan Jumlah Beli" type="text" name="jumlah" style="width: 50%"><button class="btn btn-info" type="submit">Submit</button>
+                  
+                  </div>
+
+                  
                 </div>
-            </div>
+        </form>
 
         <!-- tampilan tabel roti yang dibeli -->
 
@@ -88,18 +94,18 @@
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($this->cart->contents() as $items): ?>
-                    <?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
+                    <?php foreach ($tabel_detail_sip as $items){ ?>
+
                     <tr>
-                         <td><?=$items['id_roti'];?></td>
-                         <td><?=$items['nama_roti'];?></td>
-                         <td style="text-align:right;"><?php echo number_format($items['amount']);?></td>
-                         <td style="text-align:center;"><?php echo number_format($items['qty']);?></td>
-                         <td style="text-align:right;"><?php echo number_format($items['subtotal']);?></td>
-                         <td style="text-align:center;"><a href="<?php echo base_url().'Penjualan/remove/'.$items['rowid'];?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
+                         <td><?php echo $items->id_roti;?></td>
+                         <td><?php  echo $items->nama_roti;?></td>
+                         <td style="text-align:right;"><?php echo number_format($items->harga);?></td>
+                         <td style="text-align:center;"><?php echo number_format($items->jumlah);?></td>
+                         <td style="text-align:right;"><?php echo number_format($items->total);?></td>
+                         <td style="text-align:center;"><a href="<?php echo base_url().'Penjualan/remove/'.$items->id_roti;?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
                     </tr>
                     <?php $i++; ?>
-                    <?php endforeach; ?>
+                    <?php } ?>
                 </tbody>
             </table>
 
@@ -108,8 +114,8 @@
                 <tr>
                     <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td>
                     <th style="width:140px;">Total(Rp)</th>
-                    <th style="text-align:right;width:140px;"><input type="text" name="total2" value="<?php echo number_format($this->cart->total());?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
-                    <input type="hidden" id="total" name="total" value="<?php echo $this->cart->total();?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
+                    <th style="text-align:right;width:140px;"><input type="text" name="total2" value="<?php echo number_format($total[0]->total);?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" ></th>
+                    <input type="hidden" id="total" name="total" value="<?php echo $total[0]->total;?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
                 </tr>
                 <tr>
                     <th>Bayar(Rp)</th>

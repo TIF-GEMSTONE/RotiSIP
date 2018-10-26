@@ -26,10 +26,8 @@ class Penjualan_model extends CI_Model {
         return $this->db->get('tabel_roti')->result();
     }
 
-    function insert($roti){
-    	$this->db->like('nama_roti', $roti);
-    	$result = $this->db->get('tabel_roti')->result(); 
-    	return $result;
+    function insert($data,$table){
+		$this->db->insert($table,$data);
     }
 
 	function get_notrans(){
@@ -60,7 +58,30 @@ class Penjualan_model extends CI_Model {
 		  $kodejadi = "TR".$kodemax;  
 		  return $kodejadi;
 	}
-}
 
+	function input_pesan($data,$table){
+		$this->db->insert($table,$data);
+		
+	}
+
+	function get_penjualan($kode){
+		$this->db->select('*');
+ 		$this->db->from('tabel_detail_sip');
+ 		$this->db->join('tabel_roti','tabel_detail_sip.id_roti=tabel_roti.id_roti');
+ 		$this->db->where('no_transaksi', $kode);
+ 		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function cek_pesanan($no_transaksi,$id_roti){
+		$query = $this->db->query("SELECT * FROM `tabel_detail_sip` WHERE no_transaksi='".$no_transaksi."' AND id_roti='".$id_roti."'");
+		return $query->result();
+	}
+
+	function total($kode){
+		$query = $this->db->query("SELECT SUM(total) as total FROM `tabel_detail_sip` WHERE no_transaksi='".$kode."'");
+		return $query->result();
+	}
+}
 
 ?>

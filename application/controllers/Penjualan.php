@@ -14,10 +14,11 @@ class Penjualan extends CI_Controller{
 	        'title'=>'Penjualan'
 	    );	    	    
 	    $kode['kode'] = $this->Penjualan_model->get_notrans();
+	    $tabel_detail_sip['tabel_detail_sip'] = $this->Penjualan_model->get_penjualan($kode['kode']);
+	    $data['total'] = $this->db->query("SELECT SUM(total) as total FROM `tabel_detail_sip` WHERE no_transaksi='".$kode['kode']."'")->result();
 		$this->load->view('element/header', $title);
-		$this->load->view('v_penjualan',$data+$kode);
+		$this->load->view('v_penjualan',$data+$kode+$tabel_detail_sip);
 		
-		// $this->load->view('element/footer');
 		 // variable $kodeunik merujuk ke file model_user.php pada function buat_kode. paham kan ya? harus paham dong
        
 	}
@@ -29,7 +30,8 @@ class Penjualan extends CI_Controller{
             foreach ($result as $row)
                 $arr_result[] = array(
                 	'label'=> $row->nama_roti,
-                	'id_roti' => $row->id_roti
+                	'id_roti' => $row->id_roti,                	
+                	'harga' => $row->harga
                 );
                 echo json_encode($arr_result);
             }
@@ -91,11 +93,9 @@ class Penjualan extends CI_Controller{
 		}
 
 	function remove(){
-		$row_id=$this->uri->segment(4);
-		$this->cart->update(array(
-               'rowid'      => $row_id,
-               'qty'     => 0
-            ));
+		$id_roti = $this->uri->segment(3);
+		$no_transaksi =	$this->Penjualan_model->get_notrans();
+		$this->db->query("DELETE FROM `tabel_detail_sip` WHERE no_transaksi='$no_transaksi' AND id_roti='$id_roti'");
 		redirect('Penjualan');
 
 	}
@@ -132,6 +132,31 @@ class Penjualan extends CI_Controller{
 		//$this->session->unset_userdata('nofak');
 	}
 
+	function inputdetail(){
+		$no_transaksi = $this->input->post('no_transaksi');
+		$id_roti = $this->input->post('id_roti');
+		$harga = $this->input->post('harga');
+		$jumlah = $this->input->post('jumlah');
+		$total = $harga*$jumlah;
+		$cek = $this->db->query("SELECT * FROM `tabel_detail_sip` WHERE no_transaksi='".$no_transaksi."' AND id_roti='".$id_roti."'")->num_rows();
+		if($cek >= 1){
+			echo "hahaha";
+		}
+		elseif ($cek == 0){
+			echo "hihihihi";
+			$data = array(
+			'no_transaksi' => $no_transaksi,
+			'id_roti' => $id_roti,
+			'harga' => $harga,
+			'jumlah' => $jumlah,
+			'total' => $total
+			);
 
+		$this->Penjualan_model->input_pesan($data,'tabel_detail_sip');
+		}
+
+	}
+
+	
 }
 ?>
