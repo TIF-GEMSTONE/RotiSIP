@@ -112,7 +112,8 @@ class Penjualan extends CI_Controller{
 			}else{
 				$notrans=$this->Penjualan_model->get_notrans();
 				$this->session->set_userdata('notrans',$notrans);
-				$order_proses=$this->Penjualan_model->simpan_penjualan($notrans,$total_jual,$uang,$kembalian);
+				$session = $this->session->userdata('username');
+				$order_proses=$this->Penjualan_model->simpan_penjualan($notrans,$session,$total,$jml_uang,$kembalian);
 				if($order_proses){
 					$this->cart->destroy();
 				}else{
@@ -141,10 +142,10 @@ class Penjualan extends CI_Controller{
 		$total = $harga*$jumlah;
 		$cek = $this->db->query("SELECT * FROM `tabel_detail_sip` WHERE no_transaksi='".$no_transaksi."' AND id_roti='".$id_roti."'")->num_rows();
 		if($cek >= 1){
-			echo "hahaha";
+			$this->db->query("UPDATE `tabel_detail_sip` SET `jumlah`=jumlah+'$jumlah',`total`=total+'$total' WHERE no_transaksi='$no_transaksi' AND id_roti='$id_roti'");
+			redirect('Penjualan');
 		}
 		elseif ($cek == 0){
-			echo "hihihihi";
 			$data = array(
 			'no_transaksi' => $no_transaksi,
 			'id_roti' => $id_roti,
@@ -154,6 +155,7 @@ class Penjualan extends CI_Controller{
 			);
 
 		$this->Penjualan_model->input_pesan($data,'tabel_detail_sip');
+		redirect('Penjualan');
 		}
 
 	}

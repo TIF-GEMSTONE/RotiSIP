@@ -6,7 +6,7 @@ class Pesanan_model extends CI_Model {
     }
     
   function get_data(){
-    $query = $this->db->query("SELECT * FROM tabel_pesanan JOIN tabel_roti WHERE tabel_pesanan.id_roti=tabel_roti.id_roti");
+    $query = $this->db->query("SELECT * FROM tabel_pesanan ");
     return $query->result();
   }
   
@@ -66,9 +66,23 @@ class Pesanan_model extends CI_Model {
      $kode = 1;    
     }
     $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
-    $kodejadi = "TR".$kodemax;  
+    $kodejadi = "TP".$kodemax;  
     return $kodejadi;
-}
+  }
+
+  function inputdetail($data,$table) {
+    $this->db->insert($table,$data);
+
+  }
+
+  function get_pesanan($kode){
+    $this->db->select('*');
+    $this->db->from('tabel_detail_pesan');
+    $this->db->join('tabel_roti','tabel_detail_pesan.id_roti=tabel_roti.id_roti');
+    $this->db->where('id_pesan', $kode);
+    $query = $this->db->get();
+    return $query->result();
+  }
 
 }
 ?>
