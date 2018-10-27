@@ -3,15 +3,14 @@ class LaporanSIP extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->library('session');
-		$this->load->model('TransaksiSIP_Model');
+		$this->load->model('LaporanSIP_Model');
 	}
 
 
 	public function index(){
 		$this->session->set_userdata('username', 'admin');
-		//$this->load->view('StokSalesview');
 		$data = array(
-				'data'=>$this->TransaksiSIP_Model->get_laporan());
+				'data'=>$this->LaporanSIP_Model->get_laporan());
 		$title=array(
 	        'title'=>'Laporan'
 	    );
@@ -22,7 +21,7 @@ class LaporanSIP extends CI_Controller{
 
     function detail($id){
     	$data = array (
-				'detail' =>$this->TransaksiSIP_Model->get_detail($id));
+				'detail' =>$this->LaporanSIP_Model->get_detail($id));
     	$title=array(
 	        'title'=>'Laporan'
 	    );

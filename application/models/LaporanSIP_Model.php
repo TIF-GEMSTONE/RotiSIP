@@ -1,19 +1,20 @@
 <?php
-class barang_model extends CI_Model{
-	function get_barang(){
-		$query = $this->db->get('tabel_transaksi_sip');
-		return $result = $query->result_array();
-	}
+class LaporanSIP_model extends CI_Model{
+	function get_laporan(){
+	//	$query = $this->db->get('tabel_detail_sip');
+	//	return $result = $query->result_array();
+	
+		$query = $this->db->query("SELECT no_transaksi,SUM(jumlah) AS jumlah, SUM(total) AS total FROM tabel_detail_sip GROUP BY no_transaksi");  
+        if($query->num_rows() > 0){
+            foreach($query->result() as $data){
+                $hasil[] = $data;
+            }
+            return $hasil;
+        }
+    }
 
-	function pesan_detail($id_pesan){
-		$this->db->select('pesanan.*, user.NAMA, user.ALAMAT, user.NO_HP, barang.NAMA_BARANG');
-		$this->db->from('pesanan');
-		$this->db->join('user', 'user.ID_USER_ = pesanan.ID_USER');
-		$this->db->join('barang', 'barang.ID_BARANG = pesanan.ID_BARANG');
-		$this->db->where(array('ID_PESAN' => $id_pesan));
-		$query = $this->db->get();
-		return $result = $query->result_array();
-	}
 	}
 
 ?>
+
+

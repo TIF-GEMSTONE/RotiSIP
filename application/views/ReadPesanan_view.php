@@ -1,8 +1,4 @@
 
-      <div class="card mb-3">
-        <div class="card-header">
-          <i class="fa fa-table"></i>Data Pesanan</div>
-        <div class="card-body">
           <div class="table-responsive">
               <p><a class="btn btn-primary" href="<?php echo base_url()?>Pesanan/input">Tambah Pesanan</a></p>
       <form action="Pesanan" method="post">

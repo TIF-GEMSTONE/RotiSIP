@@ -1,25 +1,23 @@
-      <div class="card mb-3">
-        <div class="card-header">
-          <i class="fa fa-table"></i>Laporan Roti SIP</div>
+
         <div class="card-body">
           <div class="table-responsive">
              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <tr>
+                <!-- <th>Tgl Transaksi</th> -->
                 <th>No Transaksi</th>
-                <th>Nama Pegawai</th>
-                <th>Tgl Transaksi</th>
+                <th>Jumlah Roti</th>
                 <th>Total</th>
-        <th colspan="1"></th>
+                <th colspan="1">Aksi</th>
               </tr>
             </thead>
               <?php
-                foreach ($data as $row){ ?>
+                foreach ($data as $data){ ?>
         <tr>
-          <td><?= $row['no_transaksi'];?></td>
-          <td><?= $row['nama_pegawai'];?></td>
-          <td><?= $row['tgl_transaksi'];?></td>
-          <td><?= $row['total_jual'];?></td>
-      <td><a href="<?php echo base_url('LaporanSIP/detail/'.$row['no_transaksi']);?>">Detail</a></td>
+          <!-- <td><?= $row['tgl_transaksi'];?></td> -->
+          <td><?= $no_transaksi[] = $data->no_transaksi;?></td>
+          <td><?= $jumlah[] = (float) $data->jumlah;?></td>
+          <td><?= $total[] = (float) $data->total;?></td>
+      <!-- <td><a href="<?php echo base_url('LaporanSIP/detail/'.$row['no_transaksi']);?>">Detail</a></td> -->
         </tr>
                 <?php 
         } ?>
