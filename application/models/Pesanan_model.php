@@ -11,7 +11,7 @@ class Pesanan_model extends CI_Model {
   }
   
   function get_detail($id){
-    $query = $this->db->query("SELECT * FROM tabel_detail_pesan JOIN tabel_pesanan JOIN tabel_roti WHERE tabel_detail_pesan.id_pesan=tabel_pesanan.id_pesan AND tabel_detail_pesan.id_roti = tabel_roti.id_roti AND tabel_detail_pesan.id_pesan = $id");
+    $query = $this->db->query("SELECT * FROM tabel_detail_pesan JOIN tabel_pesanan JOIN tabel_roti WHERE tabel_detail_pesan.id_pesan=tabel_pesanan.id_pesan AND tabel_detail_pesan.id_roti = tabel_roti.id_roti AND tabel_detail_pesan.id_pesan = '$id'");
     return $query->result();
   }
 

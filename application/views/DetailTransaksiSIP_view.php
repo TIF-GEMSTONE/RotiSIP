@@ -21,7 +21,7 @@
         <tr>
           <td><?= $row['no_transaksi'];?></td>
           <td><?= $row['nama_roti'];?></td>
-          <td><?= $row['jumlah_roti'];?></td>
+          <td><?= $row['jumlah'];?></td>
           <td><?= $row['harga'];?></td>
       <td><?= $row['total'];?></td>
 

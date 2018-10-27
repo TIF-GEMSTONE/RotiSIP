@@ -23,7 +23,7 @@
           <td><?php echo $row->id_pesan;?></td>
           <td><?php echo $row->nama_pemesan;?></td>
           <td><?php echo $row->nama_roti;?></td>
-          <td><?php echo $row->jumlah_roti;?></td>
+          <td><?php echo $row->jumlah;?></td>
         </tr>
         <?php 
       }?>
