@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="card card-login mx-auto mt-5">
       <div class="card-header"><center>Login</center></div>
       <div class="card-body">
-        <form action="Dashboard" method="POST">
+        <form action="<?php echo base_url('Login');?>" method="POST">
           <div class="form-group">
             <label for="txt_user">Username</label>
             <input class="form-control" id="txt_user" name="txt_user" type="text" placeholder="Username" autofocus="">

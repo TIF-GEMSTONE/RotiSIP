@@ -14,26 +14,17 @@ class Dashboard extends CI_Controller{
 	}
 
 	public function index (){
-		if (isset($_POST['btn_log'])) {
-			$this->model1->username = $_POST['txt_user'];
-			$this->model1->password = $_POST['txt_pass'];
-			if ($this->model1->cek_log()==TRUE) {
-				$this->session->userdata('username', $this->model1->username);
-				$data['produk'] = $this->Produk_model->data();
+		if($this->session->userdata('username')=='admin'){
+			$data['produk'] = $this->Produk_model->data();
 				$title=array(
 		            'title'=>'Dashboard'
 		        );
 				$this->load->view('element/header', $title);
 				$this->load->view('Home_view', $data);
 				$this->load->view('element/footer');
-				//$this->load->view('Home_view', ['model'=>$this->model1]);
 			}else{
-				redirect('Dashboard');
+				redirect('welcome');
 			}
-		}else{
-
-			$this->load->view('Login_view', ['model'=>$this->model1]);
-		}
 	}
 	function Home(){
 		$data['produk'] = $this->Produk_model->data();
@@ -46,12 +37,6 @@ class Dashboard extends CI_Controller{
 		$this->load->view('element/footer');
 	}
 
-	public function Logout(){
-		if ($this->session->has_userdata('username')) {
-			$this->session->sess_destroy();
-		redirect('Dashboard');
-		}
-	}
 
 	public function input(){
 	$title=array(
