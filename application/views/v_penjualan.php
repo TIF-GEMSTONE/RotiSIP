@@ -112,7 +112,7 @@
             <form action="<?php echo base_url().'Penjualan/simpan_penjualan'?>" method="post">
             <table>
                 <tr>
-                    <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td>
+                    <td style="width:760px;" rowspan="2"></td>
                     <th style="width:140px;">Total(Rp)</th>
                     <th style="text-align:right;width:140px;"><input type="text" name="total2" value="<?php echo number_format($total[0]->total);?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" ></th>
                     <input type="hidden" id="total" name="total" value="<?php echo $total[0]->total;?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
@@ -126,6 +126,11 @@
                     <td></td>
                     <th>Kembalian(Rp)</th>
                     <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th></th>
+                    <th><button type="submit" class="btn btn-info btn-lg"> Simpan</button></th>
                 </tr>
 
             </table>

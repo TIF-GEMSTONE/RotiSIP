@@ -2,20 +2,20 @@
 class Penjualan_model extends CI_Model {
 	
 
-	function simpan_penjualan($notrans,$total_jual,$uang,$kembalian){
-		$this->db->query("INSERT INTO tabel_transaksi (no_transaksi,total_jual,uang,kembalian) VALUES ('$notrans','$total_jual','$uang','$kembalian')");
-		foreach ($this->cart->contents() as $item) {
+	function simpan_penjualan($notrans,$session,$total_jual,$uang,$kembalian){
+		$this->db->query("INSERT INTO tabel_transaksi_sip (no_transaksi,id_pegawai,tgl_transaksi,total_jual,uang,kembalian) VALUES ('$notrans','40001',CURDATE(),'$total_jual','$uang','$kembalian')");
+		/*foreach ($this->cart->contents() as $item) {
 			$data=array(
 				'no_transaksi' 		=>	$notrans,
 				'id_roti'			=>	$item['id_roti'],
-				'nama_roti'			=> $item['nama_roti'],
+				'nama_roti'			=>  $item['nama_roti'],
 				'harga'				=>	$item['amount'],
 				'qty'				=>	$item['qty'],
 				'subtotal'			=>	$item['subtotal']
-			);
-			$this->db->insert('tabel_detail',$data);
-			$this->db->query("update tabel_roti set stok=stok-'$item[qty]' where id_roti='$item[id]'");
-		}
+			);*/
+			//$this->db->insert('tabel_detail',$data);
+			//$this->db->query("update tabel_roti set stok=stok-'$item[qty]' where id_roti='$item[id]'");
+	
 		return true;
 	}
 
@@ -61,6 +61,11 @@ class Penjualan_model extends CI_Model {
 
 	function input_pesan($data,$table){
 		$this->db->insert($table,$data);
+		
+	}
+
+	function update_pesan($data,$table){
+		$this->db->query("UPDATE `tabel_detail_sip` SET `jumlah`='',`total`='' WHERE no_transaksi='' id_roti=''");
 		
 	}
 

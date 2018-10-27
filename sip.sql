@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2018 at 03:07 AM
+-- Generation Time: Oct 27, 2018 at 01:56 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -27,19 +27,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tabel_detail_pesan` (
-  `id_pesan` int(11) NOT NULL,
+  `id_pesan` varchar(10) NOT NULL,
   `id_roti` int(11) NOT NULL,
-  `jumlah_roti` int(11) NOT NULL
+  `harga` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tabel_detail_pesan`
 --
 
-INSERT INTO `tabel_detail_pesan` (`id_pesan`, `id_roti`, `jumlah_roti`) VALUES
-(32, 70002, 45),
-(33, 70001, 23),
-(34, 70004, 50);
+INSERT INTO `tabel_detail_pesan` (`id_pesan`, `id_roti`, `harga`, `jumlah`, `total`) VALUES
+('TP0001', 70001, 3500, 34, 76000),
+('TP0002', 70005, 9000, 12, 108000),
+('TP0004', 70003, 3500, 13, 45500);
 
 -- --------------------------------------------------------
 
@@ -60,9 +62,12 @@ CREATE TABLE `tabel_detail_sip` (
 --
 
 INSERT INTO `tabel_detail_sip` (`no_transaksi`, `id_roti`, `harga`, `jumlah`, `total`) VALUES
-('TR0001', 70005, 9000, 10, 90000),
+('TR0001', 70005, 9000, 34, 248000),
 ('TR0001', 70001, 3000, 43, 129000),
-('TR0001', 70003, 3500, 12, 42000);
+('TR0001', 70003, 3500, 12, 42000),
+('TR0002', 70006, 8500, 10, 85000),
+('TR0003', 70001, 3000, 100, 300000),
+('TP0035', 70003, 3500, 24, 84000);
 
 -- --------------------------------------------------------
 
@@ -92,26 +97,25 @@ INSERT INTO `tabel_pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `password
 --
 
 CREATE TABLE `tabel_pesanan` (
-  `id_pesan` int(10) NOT NULL,
-  `id_roti` int(11) NOT NULL,
+  `id_pesan` varchar(10) NOT NULL,
   `nama_pemesan` varchar(30) NOT NULL,
   `no_telp` varchar(13) NOT NULL,
-  `jumlah_roti` int(11) NOT NULL,
   `tgl_pesan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `tgl_ambil` date NOT NULL,
-  `jam_ambil` time NOT NULL,
-  `alamat_antar` varchar(100) DEFAULT NULL,
-  `selesai` tinyint(1) DEFAULT NULL
+  `jam_ambil` int(11) NOT NULL,
+  `alamat_antar` varchar(100) NOT NULL,
+  `selesai` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tabel_pesanan`
 --
 
-INSERT INTO `tabel_pesanan` (`id_pesan`, `id_roti`, `nama_pemesan`, `no_telp`, `jumlah_roti`, `tgl_pesan`, `tgl_ambil`, `jam_ambil`, `alamat_antar`, `selesai`) VALUES
-(32, 70002, 'Safira', '08123456789', 45, '2018-06-05 21:46:18', '2018-06-09', '09:00:00', NULL, NULL),
-(33, 70001, 'lala', '23423442', 23, '2018-06-06 01:02:38', '2018-06-06', '00:03:00', NULL, NULL),
-(34, 70003, 'Gigi', '086532164325', 56, '2018-06-06 01:22:13', '2018-06-13', '00:00:00', 'Kaliurang', 1);
+INSERT INTO `tabel_pesanan` (`id_pesan`, `nama_pemesan`, `no_telp`, `tgl_pesan`, `tgl_ambil`, `jam_ambil`, `alamat_antar`, `selesai`) VALUES
+('TP0001', 'asd', 'asdlk', '0000-00-00 00:00:00', '2018-11-11', 11, '', 0),
+('TP0002', 'asd', 'asd', '2018-10-25 17:00:00', '2018-10-26', 12, 'jember', 1),
+('TP0003', 'tes', 'tp', '0000-00-00 00:00:00', '2018-09-12', 12, 'qw', 12),
+('TP0004', 'arif', '01234', '2018-10-26 11:53:26', '2018-11-11', 11, '', 0);
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,8 @@ INSERT INTO `tabel_roti` (`id_roti`, `nama_roti`, `harga`, `tgl_produksi`, `tgl_
 (70006, 'Roti Sobek', 8500, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotisobek.jpg'),
 (70007, 'Roti Tawar', 10000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotitawar.jpg'),
 (70009, 'Roti Strawberry', 2000, '2018-10-17 06:09:13', '2018-06-30', 'https://raw.githubusercontent.com/TIF-GEMSTONE/RotiSip/master/images/rotistrw.jpg'),
-(70010, 'asd', 123, '2018-10-25 10:02:12', '0000-00-00', '7.png');
+(70010, 'asd', 123, '2018-10-25 10:02:12', '0000-00-00', '7.png'),
+(70011, 'roti nanas', 7000, '2018-10-26 01:22:05', '0000-00-00', '2.png');
 
 -- --------------------------------------------------------
 
@@ -159,6 +164,17 @@ CREATE TABLE `tabel_transaksi_sip` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `tabel_transaksi_sip`
+--
+
+INSERT INTO `tabel_transaksi_sip` (`no_transaksi`, `id_pegawai`, `tgl_transaksi`, `total_jual`, `uang`, `kembalian`) VALUES
+('TR0001', 40001, '0000-00-00', 419000, 500000, 81000),
+('TR0002', 40001, '0000-00-00', 85000, 100000, 15000),
+('TR0003', 40001, '2018-10-26', 300000, 300000, 0),
+('TR0004', 40001, '2018-10-26', 76000, 1000000, 924000),
+('TR0005', 40001, '2018-10-26', 76000, 1000000, 924000);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -166,7 +182,7 @@ CREATE TABLE `tabel_transaksi_sip` (
 -- Indexes for table `tabel_detail_pesan`
 --
 ALTER TABLE `tabel_detail_pesan`
-  ADD PRIMARY KEY (`id_pesan`),
+  ADD KEY `id_pesan` (`id_pesan`),
   ADD KEY `id_roti` (`id_roti`);
 
 --
@@ -186,8 +202,7 @@ ALTER TABLE `tabel_pegawai`
 -- Indexes for table `tabel_pesanan`
 --
 ALTER TABLE `tabel_pesanan`
-  ADD PRIMARY KEY (`id_pesan`),
-  ADD KEY `id_roti` (`id_roti`);
+  ADD PRIMARY KEY (`id_pesan`);
 
 --
 -- Indexes for table `tabel_roti`
@@ -207,25 +222,15 @@ ALTER TABLE `tabel_transaksi_sip`
 --
 
 --
--- AUTO_INCREMENT for table `tabel_detail_pesan`
---
-ALTER TABLE `tabel_detail_pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
---
 -- AUTO_INCREMENT for table `tabel_pegawai`
 --
 ALTER TABLE `tabel_pegawai`
   MODIFY `id_pegawai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40002;
 --
--- AUTO_INCREMENT for table `tabel_pesanan`
---
-ALTER TABLE `tabel_pesanan`
-  MODIFY `id_pesan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
---
 -- AUTO_INCREMENT for table `tabel_roti`
 --
 ALTER TABLE `tabel_roti`
-  MODIFY `id_roti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70011;
+  MODIFY `id_roti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70012;
 --
 -- Constraints for dumped tables
 --
@@ -234,20 +239,13 @@ ALTER TABLE `tabel_roti`
 -- Constraints for table `tabel_detail_pesan`
 --
 ALTER TABLE `tabel_detail_pesan`
-  ADD CONSTRAINT `tabel_detail_pesan_ibfk_2` FOREIGN KEY (`id_roti`) REFERENCES `tabel_roti` (`id_roti`),
-  ADD CONSTRAINT `tabel_detail_pesan_ibfk_3` FOREIGN KEY (`id_pesan`) REFERENCES `tabel_pesanan` (`id_pesan`);
+  ADD CONSTRAINT `tabel_detail_pesan_ibfk_1` FOREIGN KEY (`id_roti`) REFERENCES `tabel_roti` (`id_roti`);
 
 --
 -- Constraints for table `tabel_detail_sip`
 --
 ALTER TABLE `tabel_detail_sip`
   ADD CONSTRAINT `tabel_detail_sip_ibfk_1` FOREIGN KEY (`id_roti`) REFERENCES `tabel_roti` (`id_roti`);
-
---
--- Constraints for table `tabel_pesanan`
---
-ALTER TABLE `tabel_pesanan`
-  ADD CONSTRAINT `tabel_pesanan_ibfk_1` FOREIGN KEY (`id_roti`) REFERENCES `tabel_roti` (`id_roti`);
 
 --
 -- Constraints for table `tabel_transaksi_sip`

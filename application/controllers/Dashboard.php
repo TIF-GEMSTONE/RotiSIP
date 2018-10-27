@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller{
 			$this->model1->username = $_POST['txt_user'];
 			$this->model1->password = $_POST['txt_pass'];
 			if ($this->model1->cek_log()==TRUE) {
-				$this->session->set_userdata('username', $this->model1->username);
+				$this->session->userdata('username', $this->model1->username);
 				$data['produk'] = $this->Produk_model->data();
 				$title=array(
 		            'title'=>'Dashboard'
