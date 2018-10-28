@@ -5,10 +5,14 @@ class Penjualan extends CI_Controller{
 		$this->load->helper(array('url'));
 		$this->load->model('roti_model');
 		$this->load->model('Penjualan_model');
+		
+		if(!$this->session->userdata('username')){
+			redirect('Login');
+		}
 	}
 
 function index(){
-if($this->session->userdata('username') =='admin'){
+if($this->session->userdata('username')){
 	$data['data']=$this->roti_model->tampil_roti();
 	$title=array(
         'title'=>'Penjualan'

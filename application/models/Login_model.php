@@ -10,6 +10,25 @@ class Login_model extends CI_Model{
 		$this->load->database();
 	}
 
+	public function logged_id(){
+		return $this->session->userdata('username');
+	}
+	
+	function check_login($table, $field1, $field2)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where($field1);
+        $this->db->where($field2);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() == 0) {
+            return FALSE;
+        } else {
+            return $query->result();
+        }
+    }
+
 	public function cek_log(){
 		$sql = sprintf("SELECT COUNT(*) AS hitung FROM tabel_pegawai WHERE username='%s' AND password='%s'",
 			$this->username,
