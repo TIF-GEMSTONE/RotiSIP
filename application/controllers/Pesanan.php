@@ -4,10 +4,14 @@ class Pesanan extends CI_Controller{
 		parent::__construct();
 		$this->load->helper(array('url'));
 		$this->load->model('Pesanan_model');
+
+		if(!$this->session->userdata('username')){
+			redirect('Login');
+		}
 	}
 	
 	function index(){
-		if($this->session->userdata('username') =='admin'){
+		if($this->session->userdata('username')){
             $data = array (
 				'data' =>$this->Pesanan_model->get_data());
 			$title=array(
