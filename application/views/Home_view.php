@@ -1,8 +1,3 @@
-
-          <div class="mb-0 mt-4">
-            <i class="fa fa-newspaper-o"></i> Menu Roti</div>
-          <hr class="mt-2">
-          
         <!-- Menambahkan Data Roti -->
           <div class="column">
               <p>
