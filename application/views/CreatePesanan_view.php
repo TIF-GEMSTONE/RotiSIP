@@ -1,8 +1,4 @@
 <form action="<?php echo base_url().'Pesanan/input'?>" method="post">
-<div class="card mb-2">
-  <div class="card-header">
-    <h3> Input Pesanan</h3></div>
-    <div class="card-body">
       <div class="table-responsive">
             <div class="container">
 
@@ -10,7 +6,7 @@
             
             <div class="row">
               <div class="col-lg-9"> 
-                <label>No Transaksi</label>
+                <label>No Pesanan</label>
                 <input type="text" class="form-control" id="transaksi" name="id_pesan" placeholder="transaksi" style="width:200px;" value="<?php echo $kode;?>" readonly>
               </div>
             </div>
