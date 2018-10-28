@@ -3,7 +3,7 @@
           <div class="table-responsive">
              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <tr>
-                <!-- <th>Tgl Transaksi</th> -->
+                <th>Tgl Transaksi</th>
                 <th>No Transaksi</th>
                 <th>Jumlah Roti</th>
                 <th>Total</th>
@@ -14,6 +14,7 @@
                 foreach ($data as $data){ ?>
         <tr>
           <!-- <td><?= $row['tgl_transaksi'];?></td> -->
+          <td><?= $tgl_transaksi[] = $data->tgl_transaksi;?></td>
           <td><?= $no_transaksi[] = $data->no_transaksi;?></td>
           <td><?= $jumlah[] = (float) $data->jumlah;?></td>
           <td><?= $total[] = (float) $data->total;?></td>
