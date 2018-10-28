@@ -14,6 +14,7 @@ public function index(){
 			$title=array(
 		        'title'=>'Laporan'
 		    );
+
 			$this->load->view('element/header', $title);
 			$this->load->view('laporanSIPview',$data);
 			$this->load->view('element/footer');

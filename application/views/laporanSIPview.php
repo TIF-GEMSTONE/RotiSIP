@@ -7,7 +7,7 @@
                 <th>No Transaksi</th>
                 <th>Jumlah Roti</th>
                 <th>Total</th>
-                <th colspan="1">Aksi</th>
+                <!-- <th colspan="1">Aksi</th> -->
               </tr>
             </thead>
               <?php
@@ -17,7 +17,7 @@
           <td><?= $tgl_transaksi[] = $data->tgl_transaksi;?></td>
           <td><?= $no_transaksi[] = $data->no_transaksi;?></td>
           <td><?= $jumlah[] = (float) $data->jumlah;?></td>
-          <td><?= $total[] = (float) $data->total;?></td>
+          <td><?= $total_jual[] = $data->total_jual;?></td>
       <!-- <td><a href="<?php echo base_url('LaporanSIP/detail/'.$row['no_transaksi']);?>">Detail</a></td> -->
         </tr>
                 <?php 
