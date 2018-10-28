@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Login extends CI_Controller {
 public $model = NULL;
 
 	public function __construct(){
@@ -21,7 +21,7 @@ public $model = NULL;
 				redirect('Dashboard');
 				//$this->load->view('Home_view', ['model'=>$this->model1]);
 			}else{
-				redirect('Welcome');
+				redirect('Login');
 			}
 		}else{
 			$this->load->view('Login_view', ['model'=>$this->Login_model]);
@@ -31,7 +31,7 @@ public $model = NULL;
 	public function Logout(){
 		if ($this->session->has_userdata('username')) {
 			$this->session->sess_destroy();
-		redirect('Welcome');
+		redirect('Login');
 		}
 	}	
 }

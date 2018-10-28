@@ -138,7 +138,7 @@ body {
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url();?>Dashboard/Logout">Logout</a>
+          <a class="nav-link" href="<?php echo base_url();?>Login/Logout">Logout</a>
         </li>
       </ul>
     </div>

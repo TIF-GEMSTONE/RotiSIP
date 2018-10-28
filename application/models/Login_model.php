@@ -2,7 +2,6 @@
 class Login_model extends CI_Model{
 	public $username;
 	public $password;
-
 	public $labels = [];
 
 	public function __construct(){
@@ -19,7 +18,7 @@ class Login_model extends CI_Model{
 		$row = $query->row_array();
 		return $row['hitung'] == 1;
 	}
-
+	
 	private function _attributeLabels(){
 		return [
 			'username'=>'User :',

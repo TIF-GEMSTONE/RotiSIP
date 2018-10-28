@@ -7,17 +7,22 @@ class Pesanan extends CI_Controller{
 	}
 	
 	function index(){
-		$data = array (
+		if($this->session->userdata('username') =='admin'){
+            $data = array (
 				'data' =>$this->Pesanan_model->get_data());
-		$title=array(
-	        'title'=>'Pesanan'
-	    );
-	    $kode['kode'] = $this->Pesanan_model->get_notrans();
-	   
-	    $this->load->view('element/header', $title);
-		$this->load->view('ReadPesanan_view', $data);
+			$title=array(
+		        'title'=>'Pesanan'
+		    );
+		    $kode['kode'] = $this->Pesanan_model->get_notrans();
+		   
+		    $this->load->view('element/header', $title);
+			$this->load->view('ReadPesanan_view', $data);
+			
+			$this->load->view('element/footer');
+        }else{
+            redirect('login');
+        }
 		
-		$this->load->view('element/footer');
 	}
 	
 	public function get_autocomplete(){    //membuat dropdown pilihan di search box
