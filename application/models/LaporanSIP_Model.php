@@ -15,7 +15,6 @@ class LaporanSIP_model extends CI_Model{
         }
     }
 
-<<<<<<< HEAD
   // =========================================
 
   	public function view_by_date($date){
@@ -82,12 +81,10 @@ class LaporanSIP_model extends CI_Model{
         return $this->db->get()->result(); // Ambil data pada tabel transaksi sesuai kondisi diatas
     }
 
-=======
     function get_detail($id){
     $query = $this->db->query("SELECT * FROM tabel_detail_sip JOIN tabel_transaksi_sip JOIN tabel_roti WHERE tabel_detail_sip.no_transaksi=tabel_transaksi_sip.no_transaksi AND tabel_detail_sip.id_roti=tabel_roti.id_roti AND tabel_detail_sip.no_transaksi = '$id'");
     return $query->result();
   }
->>>>>>> d449f728bf13f9a9d41dc065b8fcffefdbdb0bae
  
 }
 
