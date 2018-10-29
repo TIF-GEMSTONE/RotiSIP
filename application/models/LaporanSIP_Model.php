@@ -10,6 +10,10 @@ class LaporanSIP_model extends CI_Model{
         }
     }
 
+    function get_detail($id){
+    $query = $this->db->query("SELECT * FROM tabel_detail_sip JOIN tabel_transaksi_sip JOIN tabel_roti WHERE tabel_detail_sip.no_transaksi=tabel_transaksi_sip.no_transaksi AND tabel_detail_sip.id_roti=tabel_roti.id_roti AND tabel_detail_sip.no_transaksi = '$id'");
+    return $query->result();
+  }
  
 }
 

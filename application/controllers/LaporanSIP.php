@@ -34,7 +34,7 @@ function detail($id){
         'title'=>'Laporan'
     );
 	$this->load->view('element/header', $title);
-	$this->load->view('DetailTransaksiSIP_view', $data);
+	$this->load->view('v_detail_laporan', $data);
 	$this->load->view('element/footer');
 }
 
