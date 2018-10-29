@@ -15,22 +15,22 @@
         </div>
 
         <!-- coding untuk searching -->
-
-        <div class="row">
-            <div class="col-lg-9">
-            
+        <div class="form-group row">
+        <!-- <div class="row"> -->
+            <div class="col-sm-3">
                 <label>No Transaksi</label>
                 <input type="text" class="form-control" id="transaksi" placeholder="transaksi" style="width:200px;" value="<?php echo $kode;?>" readonly>
+            </div>
 
+            
             <form id="form_search" action="<?php echo site_url('Penjualan/get_autocomplete');?>" method="GET">
+                <div class="col-sm-6">
                 <label>Cari Roti</label>
-                <div class="input-group">
-                    <input type="text" name="title" class="form-control" id="title" placeholder="nama_roti" style="width:200px;">
-                    
-                 </div>
+                <input type="text" name="title" class="form-control" id="title" placeholder="nama_roti" style="width:200px;">
             </form>
-
+            </div>
         </div>
+
         <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/bootstrap.js'?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery-ui.js'?>" type="text/javascript"></script>
@@ -50,7 +50,6 @@
             });
             });
         </script> 
-        </div>
 
         <form id="form_input_detail" action="<?php echo site_url('Penjualan/inputdetail');?>" method="POST">
             <div class="form-group row">
@@ -66,17 +65,14 @@
                   <div class="col-sm-3" >
                     <label  for="nama">Harga:</label>
                     <input class="form-control" type="text" name="harga" readonly >
-                    
                   </div>
                   
                   <div class="col-lg-6">
                   <label for="nomor">Jumlah: </label>
                   <input class="form-control" placeholder="Masukan Jumlah Beli" type="text" name="jumlah" style="width: 50%"><button class="btn btn-info" type="submit">Submit</button>
-                  
                   </div>
-
                   
-                </div>
+            </div>
         </form>
 
         <!-- tampilan tabel roti yang dibeli -->

@@ -97,6 +97,7 @@
             $ket = 'Semua Data Transaksi';
             $transaksi = $this->LaporanSIP_Model->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
+<<<<<<< HEAD
         
         $data['ket'] = $ket;
         $data['transaksi'] = $transaksi;
@@ -125,4 +126,20 @@
 	}
 
 	}
+=======
+}
+
+function detail($id){
+	$data = array (
+			'detail' =>$this->LaporanSIP_Model->get_detail($id));
+	$title=array(
+        'title'=>'Laporan'
+    );
+	$this->load->view('element/header', $title);
+	$this->load->view('v_detail_laporan', $data);
+	$this->load->view('element/footer');
+}
+
+}
+>>>>>>> d449f728bf13f9a9d41dc065b8fcffefdbdb0bae
 ?>

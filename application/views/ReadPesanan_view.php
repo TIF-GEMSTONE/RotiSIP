@@ -6,6 +6,7 @@
       <p align="center">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <tr>
+          <th>No.</th>
           <th>Id Pesan</th>
           <th>Nama Pemesan</th>
           <th>No. Telp</th>
@@ -15,8 +16,10 @@
           <th colspan="2"> <center> Aksi </center></th>
         </tr>
         <?php 
+        $no = 1;
         foreach ($data as $row){ ?>
         <tr>
+          <td><?php echo $no;?></td>
           <td><?php echo $row->id_pesan;?></td>
           <td><?php echo $row->nama_pemesan;?></td>
           <td><?php echo $row->no_telp;?></td>
@@ -27,7 +30,7 @@
           <td><a href="<?php echo base_url(); ?>Pesanan/detail/<?php echo $row->id_pesan;?>">Detail</a></td>
           <td><a href="<?php echo base_url(); ?>Pesanan/delete/<?php echo $row->id_pesan;?>">Hapus</a></td>
         </tr>
-        <?php 
+        <?php $no++;
       }?>
       </table>
     </p>

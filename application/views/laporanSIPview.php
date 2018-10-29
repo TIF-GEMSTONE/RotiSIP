@@ -18,15 +18,24 @@
           <div class="table-responsive">
              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <tr>
+                <th>No.</th>
                 <th>Tgl Transaksi</th>
                 <th>No Transaksi</th>
                 <th>Jumlah Roti</th>
+<<<<<<< HEAD
                 <th>Total</th> -->
                 <!-- <th colspan="1">Aksi</th> -->
 <!--               </tr>
+=======
+                <th>Total</th>
+                <th colspan="1">Aksi</th>
+              </tr>
+>>>>>>> d449f728bf13f9a9d41dc065b8fcffefdbdb0bae
             </thead>
               <?php
+              $no = 1;
                 foreach ($data as $data){ ?>
+<<<<<<< HEAD
         <tr> -->
           <!-- <td><?= $row['tgl_transaksi'];?></td> --><!-- 
           <td><?= $tgl_transaksi[] = $data->tgl_transaksi;?></td>
@@ -36,6 +45,17 @@
       <!-- <td><a href="<?php echo base_url('LaporanSIP/detail/'.$row['no_transaksi']);?>">Detail</a></td> -->
         <!-- </tr>
                 <?php 
+=======
+        <tr>
+          <td><?php echo $no;?></td>
+          <td><?= $tgl_transaksi[] = $data->tgl_transaksi;?></td>
+          <td><?= $no_transaksi[] = $data->no_transaksi;?></td>
+          <td><?= $jumlah[] = (float) $data->jumlah;?></td>
+          <td><?= $total_jual[] = $data->total_jual;?></td>
+          <td><a href="<?php echo base_url('LaporanSIP/detail/'.$data->no_transaksi);?>">Detail</a></td>
+        </tr>
+          <?php $no++; 
+>>>>>>> d449f728bf13f9a9d41dc065b8fcffefdbdb0bae
         } ?>
             </table>
         </div>
