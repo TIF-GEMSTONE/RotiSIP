@@ -31,16 +31,6 @@ class Penjualan_model extends CI_Model {
     }
 
 	function get_notrans(){
-		/*$q = $this->db->query("SELECT MAX(RIGHT(no_transaksi,1)) AS kd_max FROM tabel_transaksi");
-        $kd = "";
-        if($q->num_rows()>0){
-            foreach($q->result() as $k){
-                $tmp = ((int)$k->kd_max)+1;
-                $kd = sprintf("%01s", $tmp);
-            }
-        }else{
-            $kd = "1";
-        }*/
           $this->db->select('RIGHT(tabel_transaksi_sip.no_transaksi,4) as kode', FALSE);
 		  $this->db->order_by('no_transaksi','DESC');    
 		  $this->db->limit(1);    

@@ -40,7 +40,7 @@ function get_id(){
        $kode = 1;    
       }
       $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); 
-      $kodejadi = "TR".$kodemax;  
+      $kodejadi = "70".$kodemax;  
       return $kodejadi;
 }
 

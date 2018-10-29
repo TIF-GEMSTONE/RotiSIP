@@ -18,6 +18,8 @@
   <link href="<?php echo base_url ('assets/css/sb-admin.css');?>" rel="stylesheet">
   <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/jquery-ui.css'?>">
+     <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
+    <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script> <!-- Load file jquery -->
 </head>
 <style>
  * {

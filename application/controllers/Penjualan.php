@@ -46,16 +46,6 @@ public function get_autocomplete(){    //membuat dropdown pilihan di search box
     }
 }
 
-function search(){ //sub keyword searching
-    $title=$this->input->get('title');
-    $data['data']=$this->Penjualan_model->search($title);
-		$tit=array(
-        'title'=>'Penjualan'
-    );
-	$this->load->view('element/header', $tit);
-    $this->load->view('search_view',$data);
-}
-
 function get_roti(){
 	$id_roti=$this->input->post('id_roti');
 	$x['roti']=$this->roti_model->get_roti($id_roti);
