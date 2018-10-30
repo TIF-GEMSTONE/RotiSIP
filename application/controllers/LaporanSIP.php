@@ -34,7 +34,7 @@
                 $tgl = $_GET['tanggal'];
                 
                 $ket = 'Data Transaksi Tanggal '.date('d-m-y', strtotime($tgl));
-                $url_cetak = 'transaksi/cetak?filter=1&tahun='.$tgl;
+                $url_cetak = 'LaporanSIP/cetak?filter=1&tahun='.$tgl;
                 $transaksi = $this->LaporanSIP_Model->view_by_date($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
 
             }else if($filter == '2'){ // Jika filter nya 2 (per bulan)
@@ -43,20 +43,20 @@
                 $nama_bulan = array('', 'Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
                 
                 $ket = 'Data Transaksi Bulan '.$nama_bulan[$bulan].' '.$tahun;
-                $url_cetak = 'transaksi/cetak?filter=2&bulan='.$bulan.'&tahun='.$tahun;
+                $url_cetak = 'LaporanSIP/cetak?filter=2&bulan='.$bulan.'&tahun='.$tahun;
                 $transaksi = $this->LaporanSIP_Model->view_by_month($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
 
             }else{ // Jika filter nya 3 (per tahun)
                 $tahun = $_GET['tahun'];
                 
                 $ket = 'Data Transaksi Tahun '.$tahun;
-                $url_cetak = 'transaksi/cetak?filter=3&tahun='.$tahun;
+                $url_cetak = 'LaporanSIP/cetak?filter=3&tahun='.$tahun;
                 $transaksi = $this->LaporanSIP_Model->view_by_year($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
             }
             
         }else{ // Jika user tidak mengklik tombol tampilkan
             $ket = 'Semua Data Transaksi';
-            $url_cetak = 'transaksi/cetak';
+            $url_cetak = 'LaporanSIP/cetak';
             $transaksi = $this->LaporanSIP_Model->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
         
@@ -102,7 +102,7 @@
         $data['transaksi'] = $transaksi;
         
     ob_start();
-    $this->load->view('print', $data);
+    $this->load->view('v_print', $data);
     $html = ob_get_contents();
         ob_end_clean();
         
@@ -113,14 +113,15 @@
   }
 
 
-function detail($id){
+function detail(){
+    $id = $this->input->post('no_transaksi');
 	$data = array (
 			'detail' =>$this->LaporanSIP_Model->get_detail($id));
 	$title=array(
         'title'=>'Laporan'
     );
 	$this->load->view('element/header', $title);
-	$this->load->view('v_detail_laporan', $data);
+	$this->load->view('laporanSIPview', $data);
 	$this->load->view('element/footer');
 }
 

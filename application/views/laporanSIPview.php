@@ -11,7 +11,7 @@
         <br /><br />
         <div id="form-tanggal">
             <label>Tanggal</label><br>
-            <input type="tanggal" name="tanggal" class="input-tanggal" />
+            <input type="text" name="tanggal" class="input-tanggal" />
             <br /><br />
         </div>
         <div id="form-bulan">
@@ -54,28 +54,74 @@
     <a href="<?php echo $url_cetak; ?>">CETAK PDF</a><br /><br />
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <tr>
-        <th>No. Transaksi</th>
         <th>Tgl Transaksi</th>
+        <th>No. Transaksi</th>
         <th>Jumlah Roti</th>
         <th>Total</th>
+        <th style="text-align:center;">Detail</th>
     </tr>
-    <?php
-    if( ! empty($transaksi)){
-      $no = 1;
-      foreach($transaksi as $data){
-            $tgl = date('d-m-Y', strtotime($data->tgl_transaksi));
-            
-        echo "<tr>";
-        echo "<td>".$tgl."</td>";
-        echo "<td>".$data->no_transaksi."</td>";
-        echo "<td>".$data->jumlah."</td>";
-        echo "<td>".$data->total_jual."</td>";
-        echo "</tr>";
-        $no++;
-      }
-    }
-    ?>
-    
+    <tr>
+        <?php
+          if( ! empty($transaksi)){
+          foreach($transaksi as $data){
+          $tgl = date('d-m-Y', strtotime($data->tgl_transaksi)); 
+        ?>
+          <td style="text-align:left;"><?php echo $tgl ?></td>
+          <td style="text-align:left;"><?php echo $data->no_transaksi ?></td>
+          <td style="text-align:left;"><?php echo $data->jumlah ?></td>
+          <td style="text-align:left;"><?php echo $data->total_jual ?></td>
+          <td style="text-align:center;">
+            <a href="javascript:;"
+                      data-tgl="<?php echo $tgl ?>"
+                      data-no_transaksi="<?php echo $data->no_transaksi ?>"
+                      data-jumlah="<?php echo $data->jumlah ?>"
+                      data-total_jual="<?php echo $data->total_jual ?>"                      
+                      data-toggle="modal" data-target="#detail-data">
+                      <button  data-toggle="modal" data-target="#detail-data" class="btn btn-info">Detail</button></a></td>
+        </tr>
+        <?php   }} ?>
+      </table>
+
+    <!-- Modal Edit -->
+      <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="detail-data" class="modal fade">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                  <h4 class="modal-title">Detail Data</h4>
+              </div>
+              <form class="form-horizontal" action="<?php echo base_url('LaporanSIP/detail')?>" method="post" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-2 control-label">Tanggal</label>
+                            <div class="col-lg-10">
+                              <input class="form-control" id="tgl_transaksi" name="tgl_transaksi" ></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-2 control-label">No. Transaksi</label>
+                            <div class="col-lg-10">
+                              <input class="form-control" id="no_transaksi" name="no_transaksi" ></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-2 control-label">Jumlah</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="jumlah" name="jumlah">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-2 control-label">Total Jual</label>
+                            <div class="col-lg-10">
+                              <input class="form-control" id="total_jual" name="total_jual" ></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Tutup</button>
+                      </div></form></div></div></div>
+
+    <!-- Javascript Filter tanggal     -->
     <script src="<?php echo base_url('assets/js/jquery-ui.min.js'); ?>"></script> <!-- Load file plugin js jquery-ui -->
     <script>
     $(document).ready(function(){ // Ketika halaman selesai di load
@@ -98,6 +144,26 @@
         })
     })
     </script>
+
+    <!-- javascript Detail Transaksi -->
+    <!-- <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
+    <script src="<?php echo base_url().'assets/js/bootstrap.js'?>" type="text/javascript"></script>
+    <script src="<?php echo base_url().'assets/js/jquery-ui.js'?>" type="text/javascript"></script>
+    <script>
+      $(document).ready(function() {
+          // Untuk sunting
+          $('#detail-data').on('show.bs.modal', function (event) {
+              var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+              var modal          = $(this)
+ 
+              // Isi nilai pada field
+              modal.find('#tgl').attr("value",div.data('tgl_transaksi'));
+              modal.find('#no_transaksi').attr("value",div.data('no_transaksi'));
+              modal.find('#jumlah').attr("value",div.data('jumlah'));
+              modal.find('#total_jual').attr("value",div.data('total_jual'));
+          });
+      });
+  </script>
 </table>
     <footer class="sticky-footer">
       <div class="container">
