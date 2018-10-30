@@ -11,10 +11,14 @@ class Dashboard extends CI_Controller{
 
 		$this->load->library('session');
 		$this->load->helper('url');
+
+		if(!$this->session->userdata('username')){
+			redirect('Login');
+		}
 	}
 
 	public function index (){
-		if($this->session->userdata('username')=='admin'){
+		if($this->session->userdata('username')){
 			$data['produk'] = $this->Produk_model->data();
 				$title=array(
 		            'title'=>'Dashboard'

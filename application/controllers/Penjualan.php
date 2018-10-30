@@ -5,10 +5,14 @@ class Penjualan extends CI_Controller{
 		$this->load->helper(array('url'));
 		$this->load->model('roti_model');
 		$this->load->model('Penjualan_model');
+		
+		if(!$this->session->userdata('username')){
+			redirect('Login');
+		}
 	}
 
 function index(){
-if($this->session->userdata('username') =='admin'){
+if($this->session->userdata('username')){
 	$data['data']=$this->roti_model->tampil_roti();
 	$title=array(
         'title'=>'Penjualan'
@@ -44,16 +48,6 @@ public function get_autocomplete(){    //membuat dropdown pilihan di search box
             echo json_encode($arr_result);
         }
     }
-}
-
-function search(){ //sub keyword searching
-    $title=$this->input->get('title');
-    $data['data']=$this->Penjualan_model->search($title);
-		$tit=array(
-        'title'=>'Penjualan'
-    );
-	$this->load->view('element/header', $tit);
-    $this->load->view('search_view',$data);
 }
 
 function get_roti(){

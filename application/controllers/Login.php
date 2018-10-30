@@ -13,7 +13,19 @@ public $model = NULL;
 	}
 
 	public function index (){
-		if (isset($_POST['btn_log'])) {
+		if($this->Login_model->logged_id())
+            {
+                //jika memang session sudah terdaftar, maka redirect ke halaman dahsboard
+                redirect("Dashboard");
+
+            }else{
+                $this->load->view('Login_view', ['model'=>$this->Login_model]);
+        }
+
+    }
+
+    function input_login(){
+    	if (isset($_POST['btn_log'])) {
 			$this->Login_model->username = $_POST['txt_user'];
 			$this->Login_model->password = $_POST['txt_pass'];
 			if ($this->Login_model->cek_log()==TRUE) {
@@ -26,7 +38,8 @@ public $model = NULL;
 		}else{
 			$this->load->view('Login_view', ['model'=>$this->Login_model]);
 		}
-	}
+    }
+	
 	
 	public function Logout(){
 		if ($this->session->has_userdata('username')) {

@@ -1,8 +1,3 @@
-
-          <div class="mb-0 mt-4">
-            <i class="fa fa-newspaper-o"></i> Menu Roti</div>
-          <hr class="mt-2">
-          
         <!-- Menambahkan Data Roti -->
           <div class="column">
               <p>
@@ -17,7 +12,7 @@
         <div class="table-responsive">
              <table class="table table-bordered" id="dataTable" width="70%" cellspacing="0">
               <tr>
-                <th style="text-align:left;">No. </th>
+                <th style="text-align:left;">Id Roti </th>
                 <th style="text-align:left;">Nama Roti</th>
                 <th style="text-align:left;">Harga</th>
                 <th colspan="2" style="text-align:center;">Aksi</th>

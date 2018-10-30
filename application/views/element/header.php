@@ -18,6 +18,8 @@
   <link href="<?php echo base_url ('assets/css/sb-admin.css');?>" rel="stylesheet">
   <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/jquery-ui.css'?>">
+     <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
+    <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script> <!-- Load file jquery -->
 </head>
 <style>
  * {
@@ -84,9 +86,10 @@ body {
     <div class="collapse navbar-collapse" id="navbarResponsive">
 
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="<?php echo base_url();?>Penjualan">
-            <i class="fa fa-fw fa-dashboard"></i>
+            <i class="fa fa-fw fa-link"></i>
             <span class="nav-link-text">Penjualan</span>
           </a>
         </li>
