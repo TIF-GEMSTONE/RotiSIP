@@ -14,17 +14,21 @@ if($this->session->userdata('username') =='admin'){
         'title'=>'Penjualan'
     );	    	    
     $kode['kode'] = $this->Penjualan_model->get_notrans();
-    $tabel_detail_sip['tabel_detail_sip'] = $this->Penjualan_model->get_penjualan($kode['kode']);
     $data['total'] = $this->db->query("SELECT SUM(total) as total FROM `tabel_detail_sip` WHERE no_transaksi='".$kode['kode']."'")->result();
+    
 	$this->load->view('element/header', $title);
-	$this->load->view('v_penjualan',$data+$kode+$tabel_detail_sip);
+	$this->load->view('v_penjualan',$data+$kode);
 }else{
     redirect('login');
 }
 	
-	
 	 // variable $kodeunik merujuk ke file model_user.php pada function buat_kode. paham kan ya? harus paham dong
-   
+}
+
+public function get_data(){
+	$kode['kode'] = $this->Penjualan_model->get_notrans();
+    $tabel_detail_sip['tabel_detail_sip'] = $this->Penjualan_model->get_penjualan($kode['kode']);
+    echo json_encode($tabel_detail_sip);
 }
 
 public function get_autocomplete(){    //membuat dropdown pilihan di search box
