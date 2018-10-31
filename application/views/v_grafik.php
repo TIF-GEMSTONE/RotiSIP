@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Grafik Stok Barang</title>
- 
+
     <?php
         foreach($data as $data){
-            $id_roti[] = $data->id_roti;
+            $id_roti[] = $data->nama_roti;
             $jumlah[] = (float) $data->jumlah;
         }
     ?>
-</head>
-<body>
+
  
     <canvas id="canvas" width="1000" height="280"></canvas>
  
@@ -39,5 +34,3 @@
         var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
          
     </script>
-</body>
-</html>
