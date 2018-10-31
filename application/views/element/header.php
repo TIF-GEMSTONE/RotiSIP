@@ -18,6 +18,8 @@
   <link href="<?php echo base_url ('assets/css/sb-admin.css');?>" rel="stylesheet">
   <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/jquery-ui.css'?>">
+     <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
+    <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script> <!-- Load file jquery -->
 </head>
 <style>
  * {
@@ -113,31 +115,6 @@ body {
         
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <i class="fa fa-fw fa-envelope"></i>
-            <span class="d-lg-none">Messages
-              <span class="badge badge-pill badge-primary">12 New</span>
-            </span>
-            <span class="indicator text-primary d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-            <h6 class="dropdown-header">New Messages:</h6>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <strong>David Miller</strong>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <div class="dropdown-divider"></div>
-              <span class="text-danger">
-            </a>
-          </div>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url();?>Login/Logout">Logout</a>
         </li>

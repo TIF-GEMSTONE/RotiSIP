@@ -76,7 +76,7 @@
 
         <!-- tampilan tabel roti yang dibeli -->
 
-            <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;">
+            <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;" id="mydata">
                 <thead>
                     <tr>
                         <th>ID Roti</th>
@@ -87,20 +87,8 @@
                         <th style="width:100px;text-align:center;">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($tabel_detail_sip as $items){ ?>
-
-                    <tr>
-                         <td><?php echo $items->id_roti;?></td>
-                         <td><?php  echo $items->nama_roti;?></td>
-                         <td style="text-align:right;"><?php echo number_format($items->harga);?></td>
-                         <td style="text-align:center;"><?php echo number_format($items->jumlah);?></td>
-                         <td style="text-align:right;"><?php echo number_format($items->total);?></td>
-                         <td style="text-align:center;"><a href="<?php echo base_url().'Penjualan/remove/'.$items->id_roti;?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
-                    </tr>
-                    <?php $i++; ?>
-                    <?php } ?>
+                <tbody id="show_data">
+                    
                 </tbody>
             </table>
 
@@ -216,8 +204,8 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url().'assets/dist/js/bootstrap-select.min.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/bootstrap.min.js'?>"></script>
-    <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.min.js'?>"></script>
-    <script src="<?php echo base_url().'assets/js/jquery.dataTables.min.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/jquery.dataTables.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/jquery.price_format.min.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/moment.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/bootstrap-datetimepicker.min.js'?>"></script>
@@ -290,3 +278,37 @@
             });
         });
     </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        tampil_data_barang();   //pemanggilan fungsi tampil barang.
+         
+        $('#mydata').dataTable();
+          
+        //fungsi tampil barang
+        function tampil_data_barang(){
+            $.ajax({
+                type  : 'ajax',
+                url   : '<?php echo site_url('Penjualan/get_data');?>',
+                async : false,
+                dataType : 'json',
+                success : function(tabel_detail_sip){
+                    var html = '';
+                    var i;
+                    for(i=0; i<tabel_detail_sip.length; i++){
+                        html += '<tr>'+
+                                '<td>'+tabel_detail_sip[i].id_roti+'</td>'+
+                                '<td>'+tabel_detail_sip[i].nama_roti+'</td>'+
+                                '<td>'+tabel_detail_sip[i].harga+'</td>'+
+                                '<td>'+tabel_detail_sip[i].jumlah+'</td>'+
+                                '<td>'+tabel_detail_sip[i].total+'</td>'+
+                                '<td style="text-align:right;">'+
+                                    '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus" data="'+data[i].id_roti+'">Hapus</a>'+
+                                '</td>'+
+                                '</tr>';
+                    }
+                    $('#show_data').html(html);
+                }
+ 
+            });
+        }
+        </script>
