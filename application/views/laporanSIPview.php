@@ -146,10 +146,10 @@
     })
     </script>
 
-    <!-- javascript Detail Transaksi -->
-    <!-- <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
+    <!-- javascript Detail Transaksi --><!-- 
+     <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
     <script src="<?php echo base_url().'assets/js/bootstrap.js'?>" type="text/javascript"></script>
-    <script src="<?php echo base_url().'assets/js/jquery-ui.js'?>" type="text/javascript"></script>
+    <script src="<?php echo base_url().'assets/js/jquery-ui.js'?>" type="text/javascript"></script> -->
     <script>
       $(document).ready(function() {
           // Untuk sunting
@@ -173,7 +173,7 @@
         </div>
       </div>
     </footer>
-    <!-- Scroll to Top Button-->
+    <!-- Scroll to Top Button
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fa fa-angle-up"></i>
     </a>
