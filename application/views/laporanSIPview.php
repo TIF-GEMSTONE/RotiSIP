@@ -45,13 +45,13 @@
             </select>
             <br /><br />
         </div>
-        <button type="submit">Tampilkan</button>
+        <button type="submit" class="btn btn-info">Tampilkan</button>
         <a href="<?php echo base_url('LaporanSIP'); ?>">Reset Filter</a>
     </form>
     <hr />
     
     <b><?php echo $ket; ?></b><br /><br />
-    <a href="<?php echo $url_cetak; ?>">CETAK PDF</a><br /><br />
+    <!-- <a href="<?php echo $url_cetak; ?>">CETAK PDF</a><br /><br /> -->
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <tr>
         <th>Tgl Transaksi</th>
@@ -81,6 +81,7 @@
         </tr>
         <?php   }} ?>
       </table>
+      <button onClick="window.print();" class="btn-info">CETAK</button>
 
     <!-- Modal Edit -->
       <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="detail-data" class="modal fade">
