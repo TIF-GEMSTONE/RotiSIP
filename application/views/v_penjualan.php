@@ -9,7 +9,6 @@
             <center><?php echo $this->session->flashdata('msg');?></center>
                 <h1 class="page-header">Transaksi
                     <small>Penjualan</small>
-                    <a href="#" data-toggle="modal" data-target="#largeModal" class="pull-right"><small>Cari Roti</small></a>
                 </h1> 
             </div>
         </div>
