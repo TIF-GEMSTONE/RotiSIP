@@ -23,11 +23,12 @@ class Dashboard extends CI_Controller{
 				$title=array(
 		            'title'=>'Dashboard'
 		        );
+				$kode['kode'] = $this->Produk_model->get_id();
 				$this->load->view('element/header', $title);
-				$this->load->view('Home_view', $data);
+				$this->load->view('Home_view', $data+$kode);
 				$this->load->view('element/footer');
 			}else{
-				redirect('welcome');
+				redirect('Login');
 			}
 	}
 	function Home(){

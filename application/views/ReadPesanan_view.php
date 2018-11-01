@@ -28,7 +28,7 @@
           <td><?php echo $row->jam_ambil;?></td>
         
           <td><a href="<?php echo base_url(); ?>Pesanan/detail/<?php echo $row->id_pesan;?>">Detail</a></td>
-          <td><a href="<?php echo base_url(); ?>Pesanan/delete/<?php echo $row->id_pesan;?>">Hapus</a></td>
+          <td><a href="<?php echo base_url(); ?>Pesanan/delete/<?php echo $row->id_pesan;?>">Selesai</a></td>
         </tr>
         <?php $no++;
       }?>

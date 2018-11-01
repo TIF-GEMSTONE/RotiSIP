@@ -123,12 +123,47 @@ body {
   </nav>
 
 
+<!-- ==========================================CONTAINER================================================= -->
+
+
   <div class="content-wrapper">
-    <div class="container-fluid">
-      <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="<?php echo base_url();?>Dashboard/Home">Home</a>
-        </li>
-        <li class="breadcrumb-item active"><?php echo $title?></li>
-      </ol>
+    <div class="col-sm-9"> 
+  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+   <h3>Data Transaksi</h3>
+   <b><?php echo $ket; ?></b><br /><br />
+      <tr>
+          <th>Tgl Transaksi</th>
+          <th>No. Transaksi</th>
+          <th>Jumlah Roti</th>
+          <th>Total</th>
+          <th style="text-align:center;">Detail</th>
+      </tr>
+      <tr>
+          <?php
+            if( ! empty($transaksi)){
+            foreach($transaksi as $data){
+            $tgl = date('d-m-Y', strtotime($data->tgl_transaksi)); 
+          ?>
+            <td style="text-align:left;"><?php echo $tgl ?></td>
+            <td style="text-align:left;"><?php echo $data->no_transaksi ?></td>
+            <td style="text-align:left;"><?php echo $data->jumlah ?></td>
+            <td style="text-align:left;"><?php echo $data->total_jual ?></td>
+            <td style="text-align:center;">
+              <a href="javascript:;"
+                        data-tgl="<?php echo $tgl ?>"
+                        data-no_transaksi="<?php echo $data->no_transaksi ?>"
+                        data-jumlah="<?php echo $data->jumlah ?>"
+                        data-total_jual="<?php echo $data->total_jual ?>"                      
+                        data-toggle="modal" data-target="#detail-data">
+                        <button  data-toggle="modal" data-target="#detail-data" class="btn btn-info">Detail</button></a></td>
+          </tr>
+          <?php   }} ?>
+        </table>
+          <a href="<?php echo site_url('LaporanSIP/')?>"><button class="btn-info">Kembali</button></a>
+          <button onClick="window.print();" class="btn-info">CETAK</button>
+          </div>
+      </div>
+
+      
+
+        

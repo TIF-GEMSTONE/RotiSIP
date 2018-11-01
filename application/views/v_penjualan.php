@@ -9,7 +9,7 @@
             <center><?php echo $this->session->flashdata('msg');?></center>
                 <h1 class="page-header">Transaksi
                     <small>Penjualan</small>
-                    
+
                 </h1> 
             </div>
         </div>

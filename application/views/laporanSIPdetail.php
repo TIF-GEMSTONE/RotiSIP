@@ -125,10 +125,80 @@ body {
 
   <div class="content-wrapper">
     <div class="container-fluid">
-      <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="<?php echo base_url();?>Dashboard/Home">Home</a>
-        </li>
-        <li class="breadcrumb-item active"><?php echo $title?></li>
-      </ol>
+      
+<!-- ================================CONTAINER============================================================ -->
+
+  <?php if(isset($data)){
+    foreach ($data as $row){
+    ?>
+        <form class="form-horizontal" method="post" action="">
+            <div class="control-group">
+                        <div class="form-group">
+                          <label class="col-lg-4 col-sm-2 control-label"><h3>Detail Transaksi</h3></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-2 control-label">Tanggal</label>
+                            <div class="col-lg-10">
+                              <input class="form-control" id="tgl_transaksi" name="tgl_transaksi" value="<?php echo $row->tgl_transaksi?>" readonly></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-2 control-label">No. Transaksi</label>
+                            <div class="col-lg-10">
+                              <input class="form-control" id="no_transaksi" name="no_transaksi" value="<?php echo $row->no_transaksi?>" readonly></input>
+                            </div>
+                        </div>
+<!--                         <div class="form-group">
+                            <label class="col-lg-4 col-sm-2 control-label">Jumlah</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="jumlah" name="jumlah" value="<?php echo $row->jumlah?>" readonly></input>
+                            </div>
+                        </div> -->
+                        <!-- <div class="form-group">
+                            <label class="col-lg-4 col-sm-2 control-label">Total Jual</label>
+                            <div class="col-lg-10">
+                              <input class="form-control" id="total_jual" name="total_jual" value="<?php echo $row->total_jual?>" readonly ></input>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                          <div class="col-lg-10">
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <?php 
+                              foreach ($data as $row){
+                              ?>
+                            <tr>
+                              <th>Nama Roti</th>
+                              <th>Harga</th>
+                              <th>Jumlah</th>
+                              <th>Total</th>
+                            </tr>
+                            <tr>
+                              <td><?php echo $row->nama_roti; ?></td>
+                              <td><?php echo $row->harga; ?></td>
+                              <td><?php echo $row->jumlah; ?></td>
+                              <td><?php echo $row->total; ?></td>
+                            </tr>
+                            <tr>
+                              <th colspan="3">Total Beli</th>
+                              <th><?php echo $row->total_jual?> </th>
+                            </tr>
+                          <?php }?>
+                          </table>
+                        </div>
+                      </div>
+</form>
+                      <div class="form-group row">
+                        <!-- <div class="col-sm-1">
+                          <a href="<?php echo site_url('LaporanSIP/index/')?>"><button class="btn-info">Kembali</button></a>
+                        </div> -->
+                        <div class="col-sm-1">
+                          <button onClick="window.print();" class="btn-info">CETAK</button>
+                        </div>
+                      </div>
+                    </div>
+
+        
+
+<?php }
+}
+?>

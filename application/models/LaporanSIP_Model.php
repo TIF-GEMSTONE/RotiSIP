@@ -75,8 +75,16 @@ class LaporanSIP_model extends CI_Model{
     }
 
     function get_detail($id){
-    $query = $this->db->query("SELECT * FROM tabel_detail_sip JOIN tabel_transaksi_sip JOIN tabel_roti WHERE tabel_detail_sip.no_transaksi=tabel_transaksi_sip.no_transaksi AND tabel_detail_sip.id_roti=tabel_roti.id_roti AND tabel_detail_sip.no_transaksi = '$id'");
-    return $query->result();
+    // $query = $this->db->query("SELECT * FROM tabel_detail_sip JOIN tabel_transaksi_sip JOIN tabel_roti WHERE tabel_detail_sip.no_transaksi=tabel_transaksi_sip.no_transaksi AND tabel_detail_sip.id_roti=tabel_roti.id_roti AND tabel_detail_sip.no_transaksi = '$id'");
+    // return $query->result();
+
+    $this->db->select('*');
+    $this->db->from('tabel_transaksi_sip');
+    $this->db->join('tabel_detail_sip','tabel_transaksi_sip.no_transaksi=tabel_detail_sip.no_transaksi');
+    $this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
+    $this->db->group_by('tabel_transaksi_sip.no_transaksi');
+    $this->db->where('tabel_transaksi_sip.no_transaksi',$id);
+    return $this->db->get()->result();
   }
  
 }
