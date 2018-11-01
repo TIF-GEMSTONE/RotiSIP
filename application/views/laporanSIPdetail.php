@@ -129,7 +129,6 @@ body {
 <!-- ================================CONTAINER============================================================ -->
 
   <?php if(isset($data)){
-    foreach ($data as $row){
     ?>
         <form class="form-horizontal" method="post" action="">
             <div class="control-group">
@@ -139,13 +138,13 @@ body {
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-2 control-label">Tanggal</label>
                             <div class="col-lg-10">
-                              <input class="form-control" id="tgl_transaksi" name="tgl_transaksi" value="<?php echo $row->tgl_transaksi?>" readonly></input>
+                              <input class="form-control" id="tgl_transaksi" name="tgl_transaksi" value="<?php echo $data[0]->tgl_transaksi?>" readonly></input>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 col-sm-2 control-label">No. Transaksi</label>
                             <div class="col-lg-10">
-                              <input class="form-control" id="no_transaksi" name="no_transaksi" value="<?php echo $row->no_transaksi?>" readonly></input>
+                              <input class="form-control" id="no_transaksi" name="no_transaksi" value="<?php echo $data[0]->no_transaksi?>" readonly></input>
                             </div>
                         </div>
 <!--                         <div class="form-group">
@@ -163,9 +162,7 @@ body {
                         <div class="form-group">
                           <div class="col-lg-10">
                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <?php 
-                              foreach ($data as $row){
-                              ?>
+                            
                             <tr>
                               <th>Nama Roti</th>
                               <th>Harga</th>
@@ -173,16 +170,18 @@ body {
                               <th>Total</th>
                             </tr>
                             <tr>
+                              <?php foreach ($data as $row) : ?>
                               <td><?php echo $row->nama_roti; ?></td>
                               <td><?php echo $row->harga; ?></td>
                               <td><?php echo $row->jumlah; ?></td>
                               <td><?php echo $row->total; ?></td>
                             </tr>
+                            <?php endforeach; ?>
                             <tr>
                               <th colspan="3">Total Beli</th>
-                              <th><?php echo $row->total_jual?> </th>
+                              <th><?php echo $data[0]->total_jual?> </th>
                             </tr>
-                          <?php }?>
+                          
                           </table>
                         </div>
                       </div>
@@ -200,5 +199,4 @@ body {
         
 
 <?php }
-}
 ?>
