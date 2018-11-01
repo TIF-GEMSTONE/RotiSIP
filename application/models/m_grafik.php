@@ -19,8 +19,8 @@ class m_grafik extends CI_Model{
 		$this->db->select_sum('jumlah');
  		$this->db->from('tabel_transaksi_sip');
  		$this->db->join('tabel_detail_sip','tabel_transaksi_sip.no_transaksi=tabel_detail_sip.no_transaksi');
-    $this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
-    $this->db->group_by('tabel_transaksi_sip.no_transaksi');
+    	$this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
+    	$this->db->group_by('tabel_detail_sip.id_roti');
  		$this->db->where('DATE(tgl_transaksi)', $date);
  		$query = $this->db->get();
 		return $query->result();
@@ -34,7 +34,7 @@ class m_grafik extends CI_Model{
  		$this->db->from('tabel_transaksi_sip');
  		$this->db->join('tabel_detail_sip','tabel_transaksi_sip.no_transaksi=tabel_detail_sip.no_transaksi');
     	$this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
-    	$this->db->group_by('tabel_transaksi_sip.no_transaksi');
+    	$this->db->group_by('tabel_detail_sip.id_roti');
  		$this->db->where('MONTH(tgl_transaksi)', $month); // Tambahkan where bulan
     	$this->db->where('YEAR(tgl_transaksi)', $year); // Tambahkan where tahun
  		$query = $this->db->get();
@@ -47,7 +47,7 @@ class m_grafik extends CI_Model{
  		$this->db->from('tabel_transaksi_sip');
  		$this->db->join('tabel_detail_sip','tabel_transaksi_sip.no_transaksi=tabel_detail_sip.no_transaksi');
     $this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
-    	$this->db->group_by('tabel_transaksi_sip.no_transaksi');
+    $this->db->group_by('tabel_detail_sip.id_roti');
  		$this->db->where('YEAR(tgl_transaksi)', $year);
  		$query = $this->db->get();
 		return $query->result();
@@ -59,7 +59,7 @@ class m_grafik extends CI_Model{
     $this->db->from('tabel_transaksi_sip');
     $this->db->join('tabel_detail_sip','tabel_transaksi_sip.no_transaksi=tabel_detail_sip.no_transaksi');
     $this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
-    $this->db->group_by('tabel_transaksi_sip.no_transaksi');
+    $this->db->group_by('tabel_detail_sip.id_roti');
     $query = $this->db->get();
     return $query->result();
   }
