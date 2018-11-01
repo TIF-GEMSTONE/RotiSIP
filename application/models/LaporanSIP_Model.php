@@ -82,7 +82,6 @@ class LaporanSIP_model extends CI_Model{
     $this->db->from('tabel_transaksi_sip');
     $this->db->join('tabel_detail_sip','tabel_transaksi_sip.no_transaksi=tabel_detail_sip.no_transaksi');
     $this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
-    $this->db->group_by('tabel_transaksi_sip.no_transaksi');
     $this->db->where('tabel_transaksi_sip.no_transaksi',$id);
     return $this->db->get()->result();
   }
