@@ -28,7 +28,7 @@ class Dashboard extends CI_Controller{
 				$this->load->view('Home_view', $data+$kode);
 				$this->load->view('element/footer');
 			}else{
-				redirect('welcome');
+				redirect('Login');
 			}
 	}
 	function Home(){

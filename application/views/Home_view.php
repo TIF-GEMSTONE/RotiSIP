@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <label class="col-lg-4 col-sm-2 control-label">Nama Roti</label>
                                 <div class="col-lg-10">
-                                  <input type="hidden" id="id_roti" name="id_roti">
+                                  <!-- <input type="hidden" id="id_roti" name="id_roti"> -->
                                   <input class="form-control" id="nama_roti" name="nama_roti" placeholder="Tuliskan Nama"></input>
                                 </div>
                             </div>
