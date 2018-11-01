@@ -48,15 +48,16 @@ class Pesanan extends CI_Controller{
 		 
 		if (isset($_POST['btnTambah'])){
 			$kode['kode'] = $this->Pesanan_model->get_notrans();
-			$data = $this->Pesanan_model->input(array (
+			/*$data = $this->Pesanan_model->input(array (
 			'id_pesan' => $this->input->post('id_pesan'),
 			'nama_pemesan' => $this->input->post('nama_pemesan'),
 			'no_telp' => $this->input->post('no_telp'),
-			
-			
 			'tgl_ambil' => $this->input->post('tgl_ambil'),
 			'jam_ambil' => $this->input->post('jam_ambil')
-			));
+			));*/
+			$this->db->query("INSERT INTO tabel_pesanan (id_pesan,nama_pemesan,no_telp,tgl_ambil,jam_ambil,alamat_antar) SELECT id_pesan,nama_pemesan,no_telp,tgl_ambil,jam_ambil,alamat_antar FROM tabel_detail_pemesan WHERE id_pesan='".$kode['kode']."'");
+
+
 
 			
 			redirect('Pesanan');
