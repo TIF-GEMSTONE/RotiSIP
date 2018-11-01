@@ -48,6 +48,9 @@ class Pesanan extends CI_Controller{
 		 
 		if (isset($_POST['btnTambah'])){
 			$kode['kode'] = $this->Pesanan_model->get_notrans();
+			$total = $this->input->post('total');
+			$dp = $this->input->post('jml_uang');
+			$pelunasan = $this->input->post('kembalian');
 			/*$data = $this->Pesanan_model->input(array (
 			'id_pesan' => $this->input->post('id_pesan'),
 			'nama_pemesan' => $this->input->post('nama_pemesan'),
@@ -56,7 +59,7 @@ class Pesanan extends CI_Controller{
 			'jam_ambil' => $this->input->post('jam_ambil')
 			));*/
 			$this->db->query("INSERT INTO tabel_pesanan (id_pesan,nama_pemesan,no_telp,tgl_ambil,jam_ambil,alamat_antar) SELECT id_pesan,nama_pemesan,no_telp,tgl_ambil,jam_ambil,alamat_antar FROM tabel_detail_pemesan WHERE id_pesan='".$kode['kode']."'");
-
+			$this->db->query("UPDATE `tabel_pesanan` SET `grand_total`='".$total."',`dp`='".$dp."',`pelunasan`='".$pelunasan."' WHERE id_pesan='".$kode['kode']."'");
 
 
 			
@@ -150,7 +153,7 @@ class Pesanan extends CI_Controller{
 	    	$this->db->query("UPDATE `tabel_detail_pemesan` SET `nama_pemesan`='$nama_pemesan',`tgl_ambil`='$tgl_ambil',`jam_ambil`='$jam_ambil',`alamat_antar`='$alamat_antar',`no_telp`='$no_telp' WHERE id_pesan='$no_transaksi'");
 	    }
 	    elseif ($ceklagi == 0) {
-	    		$this->db->query("INSERT INTO `tabel_detail_pemesan`(`id_pesan`, `nama_pemesan`, `tgl_ambil`, `jam_ambil`, `alamat_antar`) VALUES ('$no_transaksi','$nama_pemesan','$tgl_ambil','$jam_ambil','$alamat_antar')");
+	    		$this->db->query("INSERT INTO `tabel_detail_pemesan`(`id_pesan`, `nama_pemesan`, `tgl_ambil`, `jam_ambil`, `alamat_antar`,`no_telp`) VALUES ('$no_transaksi','$nama_pemesan','$tgl_ambil','$jam_ambil','$alamat_antar','$no_telp')");
 	    }
 	    $cek = $this->db->query("SELECT * FROM `tabel_detail_pesan` WHERE id_pesan='".$no_transaksi."' AND id_roti='".$id_roti."'")->num_rows();
 	    if($cek >= 1){

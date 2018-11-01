@@ -132,18 +132,18 @@
             <table>
                 <tr>
                     <td style="width:760px;" rowspan="2"></td>
-                    <th style="width:140px;">Total(Rp)</th>
+                    <th style="width:140px;">Total (Rp)</th>
                     <th style="text-align:right;width:140px;"><input type="text" name="total2" value="<?php echo number_format($total[0]->total);?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" ></th>
                     <input type="hidden" id="total" name="total" value="<?php echo $total[0]->total;?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
                 </tr>
                 <tr>
-                    <th>Bayar(Rp)</th>
+                    <th>DP (Rp)</th>
                     <th style="text-align:right;"><input type="text" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" required onkeypress="return hanyaAngka(event)"></th>
                     <input type="hidden" id="jml_uang2" name="jml_uang2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
                 </tr>
                 <tr>
                     <td></td>
-                    <th>Kembalian(Rp)</th>
+                    <th>Pelunasan (Rp)</th>
                     <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
                 </tr>
                 <tr>
