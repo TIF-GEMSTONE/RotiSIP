@@ -47,7 +47,7 @@ class Pesanan extends CI_Controller{
 	function input(){
 		 
 		if (isset($_POST['btnTambah'])){
-
+			$kode['kode'] = $this->Pesanan_model->get_notrans();
 			$data = $this->Pesanan_model->input(array (
 			'id_pesan' => $this->input->post('id_pesan'),
 			'nama_pemesan' => $this->input->post('nama_pemesan'),
@@ -71,8 +71,20 @@ class Pesanan extends CI_Controller{
 		    $kode['kode'] = $this->Pesanan_model->get_notrans();
 			$this->load->view('element/header', $title);
 			$tabel_detail_pesan['tabel_detail_pesan'] = $this->Pesanan_model->get_pesanan($kode['kode']);
-			$data['total'] = $this->db->query("SELECT SUM(total) as total FROM `tabel_detail_pesan` WHERE id_pesan='".$kode['kode']."'")->result();
+			$cek = $this->db->query("SELECT * FROM `tabel_detail_pemesan` WHERE id_pesan='".$kode['kode']."'")->num_rows();
+			if ($cek >=1 ){
+				$pemesan['pemesan'] = $this->db->query("SELECT * FROM `tabel_detail_pemesan` WHERE id_pesan='".$kode['kode']."'")->result();
+				$data['total'] = $this->db->query("SELECT SUM(total) as total FROM `tabel_detail_pesan` WHERE id_pesan='".$kode['kode']."'")->result();
+			$this->load->view('CreatePesanan_view', $data+$kode+$pemesan+$tabel_detail_pesan);
+			}
+			elseif ($cek == 0){
+				$data['total'] = $this->db->query("SELECT SUM(total) as total FROM `tabel_detail_pesan` WHERE id_pesan='".$kode['kode']."'")->result();
 			$this->load->view('CreatePesanan_view', $data+$kode+$tabel_detail_pesan);
+
+			}
+
+			//$data['total'] = $this->db->query("SELECT SUM(total) as total FROM `tabel_detail_pesan` WHERE id_pesan='".$kode['kode']."'")->result();
+			//$this->load->view('CreatePesanan_view', $data+$kode+$pemesan+$tabel_detail_pesan);
 			// $this->load->view('element/footer');
 		}
 	}
@@ -123,27 +135,42 @@ class Pesanan extends CI_Controller{
 
     function inputdetail(){
     	$no_transaksi = $this->input->post('no_transaksi');
+    	$nama_pemesan = $this->input->post('nama_pemesan');
+    	$tgl_ambil = $this->input->post('tgl_ambil');
+    	$jam_ambil = $this->input->post('jam_ambil');
+    	$no_telp = $this->input->post('no_telp');
+    	$alamat_antar = $this->input->post('alamat');
 	    $id_roti = $this->input->post('id_roti');
 	    $harga = $this->input->post('harga');
 	    $jumlah = $this->input->post('jumlah');
 	    $total = $harga*$jumlah;
+	    $ceklagi = $this->db->query("SELECT * FROM `tabel_detail_pemesan` WHERE id_pesan='".$no_transaksi."'")->num_rows();
+	    if($ceklagi >= 1){
+	    	$this->db->query("UPDATE `tabel_detail_pemesan` SET `nama_pemesan`='$nama_pemesan',`tgl_ambil`='$tgl_ambil',`jam_ambil`='$jam_ambil',`alamat_antar`='$alamat_antar',`no_telp`='$no_telp' WHERE id_pesan='$no_transaksi'");
+	    }
+	    elseif ($ceklagi == 0) {
+	    		$this->db->query("INSERT INTO `tabel_detail_pemesan`(`id_pesan`, `nama_pemesan`, `tgl_ambil`, `jam_ambil`, `alamat_antar`) VALUES ('$no_transaksi','$nama_pemesan','$tgl_ambil','$jam_ambil','$alamat_antar')");
+	    }
 	    $cek = $this->db->query("SELECT * FROM `tabel_detail_pesan` WHERE id_pesan='".$no_transaksi."' AND id_roti='".$id_roti."'")->num_rows();
 	    if($cek >= 1){
-			$this->db->query("UPDATE `tabel_detail_pesan` SET `jumlah`=jumlah+'$jumlah',`total`=total+'$total' WHERE id_pesan='$no_transaksi' AND id_roti='$id_roti'");
-			redirect('Pesanan/input');
-		}
+	    		$this->db->query("UPDATE `tabel_detail_pesan` SET `jumlah`=jumlah+'$jumlah',`total`=total+'$total' WHERE id_pesan='$no_transaksi' AND id_roti='$id_roti'");
+	    		redirect('Pesanan/input');
+	    	}
+	    	
+			
+		
 		elseif ($cek == 0){
-			$data = array(
+			
+				$data = array(
 			'id_pesan' => $no_transaksi,
 			'id_roti' => $id_roti,
 			'harga' => $harga,
 			'jumlah' => $jumlah,
 			'total' => $total
 			);
-
-
-		$this->Pesanan_model->inputdetail($data,'tabel_detail_pesan');
-		redirect('Pesanan/input');
+	    		
+			$this->Pesanan_model->inputdetail($data,'tabel_detail_pesan');
+			redirect('Pesanan/input');
 		}
     }
     function remove(){

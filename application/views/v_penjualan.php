@@ -9,7 +9,7 @@
             <center><?php echo $this->session->flashdata('msg');?></center>
                 <h1 class="page-header">Transaksi
                     <small>Penjualan</small>
-                    <a href="#" data-toggle="modal" data-target="#largeModal" class="pull-right"><small>Cari Roti</small></a>
+                    
                 </h1> 
             </div>
         </div>
@@ -77,7 +77,7 @@
 
         <!-- tampilan tabel roti yang dibeli -->
 
-            <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;" id="mydata">
+            <table class="table table-bordered table-condensed" style="font-size:11px;margin-top:10px;" >
                 <thead>
                     <tr>
                         <th>ID Roti</th>
@@ -88,8 +88,20 @@
                         <th style="width:100px;text-align:center;">Aksi</th>
                     </tr>
                 </thead>
-                <tbody id="show_data">
-                    
+                <tbody >
+                    <?php $i = 1; ?>
+                    <?php foreach ($tabel_detail_sip as $items){ ?>
+
+                    <tr>
+                         <td><?php echo $items->id_roti;?></td>
+                         <td><?php  echo $items->nama_roti;?></td>
+                         <td style="text-align:right;"><?php echo number_format($items->harga);?></td>
+                         <td style="text-align:center;"><?php echo number_format($items->jumlah);?></td>
+                         <td style="text-align:right;"><?php echo number_format($items->total);?></td>
+                         <td style="text-align:center;"><a href="<?php echo base_url().'Penjualan/remove/'.$items->id_roti;?>" class="btn btn-warning btn-xs"><span class="fa fa-close"></span> Batal</a></td>
+                    </tr>
+                    <?php $i++; ?>
+                    <?php } ?>
                 </tbody>
             </table>
 
@@ -313,3 +325,5 @@
             });
         }
         </script>
+        
+        

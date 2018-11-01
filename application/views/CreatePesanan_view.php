@@ -1,8 +1,9 @@
-<form action="<?php echo base_url().'Pesanan/input'?>" method="post">
+    <form id="form_input_detail" action="<?php echo site_url('Pesanan/inputdetail');?>" method="POST">
       <div class="table-responsive">
             <div class="container">
 
               
+         
             
             <div class="row">
               <div class="col-lg-9"> 
@@ -15,29 +16,30 @@
 
               <div class="col-sm-4" >
                 <label  for="nama">Nama Pemesan:</label>
-                <input class="form-control" placeholder="Masukan Nama" type="text" name="nama_pemesan" value="<?php if(isset($data)) { echo $data[0]->nama_pemesan; } ?>">
+                <input class="form-control" placeholder="Masukan Nama" type="text" name="nama_pemesan" value="<?php if(isset($pemesan)){ echo $pemesan[0]->nama_pemesan; } ?>">
               </div>
               
               <div class="col-sm-4">
               <label for="nomor">Nomer Telepon: </label>
-                <input class="form-control" placeholder="Masukan Nomor" type="text" name="no_telp" value="<?php if(isset($data)) { echo $data[0]->no_telp; } ?>">
+                <input class="form-control" placeholder="Masukan Nomor" type="text" name="no_telp" value="<?php if(isset($pemesan)){echo $pemesan[0]->no_telp;}  ?>" onkeypress="return hanyaAngka(event)" maxlength="13">
                 </div>
             </div>
 
             <div class="form-group row">
               <div class="col-sm-4">
                 <label for="alamat">Alamat</label>
-                <input class="form-control" type="textarea" name="alamat" value="<?php if(isset($data)) { echo $data[0]->alamat_antar; } ?>">
+                <input class="form-control" type="textarea" name="alamat" value="<?php if(isset($pemesan)){ echo $pemesan[0]->alamat_antar;}?>">
               </div>          
    
               <div class="col-sm-2">
                 <label for="Pesan">Jam Ambil:</label>
-                <input class="form-control" type="time" name="jam_ambil" value="<?php if(isset($data)) { echo $data[0]->jam_ambil; } ?>">
+                <input class="form-control" type="time" name="jam_ambil" value="<?php if(isset($pemesan)){ echo $pemesan[0]->jam_ambil; }?>">
               </div>
 
               <div class="col-sm-3">
                 <label for="Pesan">Tanggal Ambil:</label>
-                <input class="form-control" type="date" name="tgl_ambil" value="<?php if(isset($data)) { echo $data[0]->tgl_ambil; } ?>">
+                <input class="form-control" type="date" name="tgl_ambil" value="<?php if(isset($pemesan)){ echo $pemesan[0]->tgl_ambil;}?>"
+                     >
               </div>
             </div>
 
@@ -75,7 +77,6 @@
             });
         </script> 
         </div>
-         <form id="form_input_detail" action="<?php echo site_url('Pesanan/inputdetail');?>" method="POST">
         <div class="form-group row">
             <div class="col-sm-3" >
                 <label  for="nama">Nama Roti:</label>
@@ -91,7 +92,7 @@
               
               <div class="col-lg-3">
               <label for="nomor">Jumlah: </label>
-                <input class="form-control" placeholder="Masukan Jumlah Beli" type="text" name="jumlah">
+                <input class="form-control" placeholder="Masukan Jumlah Beli" type="text" name="jumlah" onkeypress="return hanyaAngka(event)">
                 <span class="input-group-btn">
                         <button class="btn btn-info" type="submit">Submit</button>
                     </span>
@@ -127,7 +128,7 @@
                 </tbody>
             </table>
 
-            
+            <form action="<?php echo base_url().'Pesanan/input'?>" method="post">
             <table>
                 <tr>
                     <td style="width:760px;" rowspan="2"></td>
@@ -137,7 +138,7 @@
                 </tr>
                 <tr>
                     <th>Bayar(Rp)</th>
-                    <th style="text-align:right;"><input type="text" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+                    <th style="text-align:right;"><input type="text" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" required onkeypress="return hanyaAngka(event)"></th>
                     <input type="hidden" id="jml_uang2" name="jml_uang2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
                 </tr>
                 <tr>
@@ -171,4 +172,14 @@
             })
             
         });
+    </script>
+    <script type="text/javascript">
+            
+        function hanyaAngka(evt) {
+          var charCode = (evt.which) ? evt.which : event.keyCode
+           if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+            return false;
+          return true;
+        }
     </script>
