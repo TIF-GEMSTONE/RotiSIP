@@ -19,9 +19,9 @@ if($this->session->userdata('username')){
     );	    	    
     $kode['kode'] = $this->Penjualan_model->get_notrans();
     $data['total'] = $this->db->query("SELECT SUM(total) as total FROM `tabel_detail_sip` WHERE no_transaksi='".$kode['kode']."'")->result();
-    
+    $tabel_detail_sip['tabel_detail_sip'] = $this->Penjualan_model->get_penjualan($kode['kode']);
 	$this->load->view('element/header', $title);
-	$this->load->view('v_penjualan',$data+$kode);
+	$this->load->view('v_penjualan',$data+$kode+$tabel_detail_sip);
 }else{
     redirect('login');
 }
@@ -116,7 +116,7 @@ function simpan_penjualan(){
 			$session = $this->session->userdata('username');
 			$order_proses=$this->Penjualan_model->simpan_penjualan($notrans,$session,$total,$jml_uang,$kembalian);
 			if($order_proses){
-				$this->cart->destroy();
+				redirect('Penjualan');
 			}else{
 				redirect('Penjualan');
 			}
@@ -144,6 +144,7 @@ function inputdetail(){
 	$cek = $this->db->query("SELECT * FROM `tabel_detail_sip` WHERE no_transaksi='".$no_transaksi."' AND id_roti='".$id_roti."'")->num_rows();
 	if($cek >= 1){
 		$this->db->query("UPDATE `tabel_detail_sip` SET `jumlah`=jumlah+'$jumlah',`total`=total+'$total' WHERE no_transaksi='$no_transaksi' AND id_roti='$id_roti'");
+		
 		redirect('Penjualan');
 	}
 	elseif ($cek == 0){
