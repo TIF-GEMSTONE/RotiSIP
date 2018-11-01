@@ -1,6 +1,6 @@
 
 
-<form method="get" action="">
+<form method="get" action="<?php echo base_url('LaporanSIP/cetak')?>">
         <label>Filter Berdasarkan</label><br>
         <select name="filter" id="filter">
             <option value="">Pilih</option>
@@ -51,7 +51,6 @@
     <hr />
     
     <b><?php echo $ket; ?></b><br /><br />
-    <!-- <a href="<?php echo $url_cetak; ?>">CETAK PDF</a><br /><br /> -->
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <tr>
         <th>Tgl Transaksi</th>
@@ -70,60 +69,20 @@
           <td style="text-align:left;"><?php echo $data->no_transaksi ?></td>
           <td style="text-align:left;"><?php echo $data->jumlah ?></td>
           <td style="text-align:left;"><?php echo $data->total_jual ?></td>
-          <td style="text-align:center;">
-            <a href="javascript:;"
-                      data-tgl="<?php echo $tgl ?>"
-                      data-no_transaksi="<?php echo $data->no_transaksi ?>"
-                      data-jumlah="<?php echo $data->jumlah ?>"
-                      data-total_jual="<?php echo $data->total_jual ?>"                      
-                      data-toggle="modal" data-target="#detail-data">
-                      <button  data-toggle="modal" data-target="#detail-data" class="btn btn-info">Detail</button></a></td>
+          <td style="text-align:center;"> 
+            <a class="btn btn-mini" href="<?php echo site_url('LaporanSIP/detail/'.$data->no_transaksi)?>">
+                        <button class="btn btn-info">Detail</button></a>
+                    </td>
         </tr>
         <?php   }} ?>
       </table>
-      <button onClick="window.print();" class="btn-info">CETAK</button>
+<!--       <a href="<?php echo base_url()?>LaporanSIP/cetak" target="_blank" ><button class="btn btn-info"> Cetak</button></a> -->
 
-    <!-- Modal Edit -->
-      <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="detail-data" class="modal fade">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                  <h4 class="modal-title">Detail Data</h4>
-              </div>
-              <form class="form-horizontal" action="<?php echo base_url('LaporanSIP/detail')?>" method="post" enctype="multipart/form-data" role="form">
-                <div class="modal-body">
-                        <div class="form-group">
-                            <label class="col-lg-4 col-sm-2 control-label">Tanggal</label>
-                            <div class="col-lg-10">
-                              <input class="form-control" id="tgl_transaksi" name="tgl_transaksi" ></input>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-4 col-sm-2 control-label">No. Transaksi</label>
-                            <div class="col-lg-10">
-                              <input class="form-control" id="no_transaksi" name="no_transaksi" ></input>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-4 col-sm-2 control-label">Jumlah</label>
-                            <div class="col-lg-10">
-                                <input type="number" class="form-control" id="jumlah" name="jumlah">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-4 col-sm-2 control-label">Total Jual</label>
-                            <div class="col-lg-10">
-                              <input class="form-control" id="total_jual" name="total_jual" ></input>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Tutup</button>
-                      </div></form></div></div></div>
+   
+   <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
+    <!-- <script src="<?php echo base_url().'assets/js/bootstrap.js'?>" type="text/javascript"></script> -->
+    <script src="<?php echo base_url().'assets/js/jquery-ui.js'?>" type="text/javascript"></script>
 
-    <!-- Javascript Filter tanggal     -->
-    <script src="<?php echo base_url('assets/js/jquery-ui.min.js'); ?>"></script> <!-- Load file plugin js jquery-ui -->
     <script>
     $(document).ready(function(){ // Ketika halaman selesai di load
         $('.input-tanggal').datepicker({
@@ -143,28 +102,9 @@
             }
             $('#form-tanggal input, #form-bulan select, #form-tahun select').val(''); // Clear data pada textbox tanggal, combobox bulan & tahun
         })
-    })
-    </script>
-
-    <!-- javascript Detail Transaksi --><!-- 
-     <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
-    <script src="<?php echo base_url().'assets/js/bootstrap.js'?>" type="text/javascript"></script>
-    <script src="<?php echo base_url().'assets/js/jquery-ui.js'?>" type="text/javascript"></script> -->
-    <script>
-      $(document).ready(function() {
-          // Untuk sunting
-          $('#detail-data').on('show.bs.modal', function (event) {
-              var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-              var modal          = $(this)
- 
-              // Isi nilai pada field
-              modal.find('#tgl').attr("value",div.data('tgl_transaksi'));
-              modal.find('#no_transaksi').attr("value",div.data('no_transaksi'));
-              modal.find('#jumlah').attr("value",div.data('jumlah'));
-              modal.find('#total_jual').attr("value",div.data('total_jual'));
-          });
-      });
-  </script>
+    })     
+   </script>
+    
 </table>
     <footer class="sticky-footer">
       <div class="container">
@@ -173,11 +113,6 @@
         </div>
       </div>
     </footer>
-    <!-- Scroll to Top Button
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fa fa-angle-up"></i>
-    </a>
-    <!-- Logout Modal-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -201,14 +136,14 @@
     <!-- Core plugin JavaScript-->
     <script src="<?php echo base_url ('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
     <!-- Page level plugin JavaScript-->
-    <script src="<?php echo base_url ('asstes/vendor/chart.js/Chart.min.js')?>"></script>
-    <script src="<?php echo base_url ('asstes/vendor/datatables/jquery.dataTables.js')?>"></script>
-    <script src="<?php echo base_url ('asstes/vendor/datatables/dataTables.bootstrap4.js')?>"></script>
+    <script src="<?php echo base_url ('assets/vendor/chart.js/Chart.min.js')?>"></script>
+    <script src="<?php echo base_url ('assets/vendor/datatables/jquery.dataTables.js')?>"></script>
+    <script src="<?php echo base_url ('assets/vendor/datatables/dataTables.bootstrap4.js')?>"></script>
     <!-- Custom scripts for all pages-->
-    <script src="<?php echo base_url ('asstes/js/sb-admin.min.js')?>"></script>
+    <script src="<?php echo base_url ('assets/js/sb-admin.min.js')?>"></script>
     <!-- Custom scripts for this page-->
-    <script src="<?php echo base_url ('asstes/js/sb-admin-datatables.min.js')?>"></script>
-    <script src="<?php echo base_url ('asstes/vendor/chart.js/Chart.min.js')?>"></script>
+    <script src="<?php echo base_url ('assets/js/sb-admin-datatables.min.js')?>"></script>
+    <script src="<?php echo base_url ('assets/vendor/chart.js/Chart.min.js')?>"></script>
   </div>
 </body>
 

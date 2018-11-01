@@ -10,23 +10,6 @@
 			}
 		}
 
-
-	// public function index(){
-	// 	if($this->session->userdata('username')){
-	//             $data = array(
-	// 			'data'=>$this->LaporanSIP_Model->get_laporan());
-	// 			$title=array(
-	// 		        'title'=>'Laporan'
-	// 		    );
-
-	// 			$this->load->view('element/header', $title);
-	// 			$this->load->view('laporanSIPview',$data);
-	// 			$this->load->view('element/footer');
-	//         }else{
-	//             redirect('login');
-	//         }
-	// }
-
 	public function index(){
         if(isset($_GET['filter']) && ! empty($_GET['filter'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
@@ -69,10 +52,10 @@
 	    );
 		$this->load->view('element/header', $title);
 		$this->load->view('laporanSIPview', $data);
-		// $this->load->view('element/footer');
   }
   
   public function cetak(){
+
         if(isset($_GET['filter']) && ! empty($_GET['filter'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if($filter == '1'){ // Jika filter nya 1 (per tanggal)
@@ -100,29 +83,19 @@
         
         $data['ket'] = $ket;
         $data['transaksi'] = $transaksi;
-        
-    ob_start();
-    $this->load->view('v_print', $data);
-    $html = ob_get_contents();
-        ob_end_clean();
-        
-        require_once('./assets/html2pdf/html2pdf.class.php');
-    $pdf = new HTML2PDF('P','A4','en');
-    $pdf->WriteHTML($html);
-    $pdf->Output('Data Transaksi.pdf', 'D');
+
+    $this->load->view('laporanSIPviewFilter', $data);
+    $this->load->view('element/footer');
   }
 
 
 function detail(){
-    $id = $this->input->post('no_transaksi');
-	$data = array (
-			'detail' =>$this->LaporanSIP_Model->get_detail($id));
-	$title=array(
-        'title'=>'Laporan'
-    );
-	$this->load->view('element/header', $title);
-	$this->load->view('laporanSIPview', $data);
-	$this->load->view('element/footer');
+    $id= $this->uri->segment(3);
+        $data=array(
+            'data'=>$this->LaporanSIP_Model->get_detail($id),
+        );
+        $this->load->view('LaporanSIPdetail', $data);
+        $this->load->view('element/footer');
 }
 
 }
