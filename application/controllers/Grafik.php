@@ -18,7 +18,7 @@ class Grafik extends CI_Controller {
                 
                 $ket = 'Data Transaksi Tanggal '.date('d-m-y', strtotime($tgl));
                 $url_cetak = 'Grafik/cetak?filter=1&tahun='.$tgl;
-                $transaksi = $this->mgrafik->view_by_date($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
+                $transaksi = $this->m_grafik->view_by_date($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
 
             }else if($filter == '2'){ // Jika filter nya 2 (per bulan)
                 $bulan = $_GET['bulan'];
@@ -27,14 +27,14 @@ class Grafik extends CI_Controller {
                 
                 $ket = 'Data Transaksi Bulan '.$nama_bulan[$bulan].' '.$tahun;
                 $url_cetak = 'Grafik/cetak?filter=2&bulan='.$bulan.'&tahun='.$tahun;
-                $transaksi = $this->mgrafik->view_by_month($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
+                $transaksi = $this->m_grafik->view_by_month($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
 
             }else{ // Jika filter nya 3 (per tahun)
                 $tahun = $_GET['tahun'];
                 
                 $ket = 'Data Transaksi Tahun '.$tahun;
                 $url_cetak = 'Grafik/cetak?filter=3&tahun='.$tahun;
-                $transaksi = $this->mgrafik->view_by_year($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
+                $transaksi = $this->m_grafik->view_by_year($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
             }
             
         }else{ // Jika user tidak mengklik tombol tampilkan
