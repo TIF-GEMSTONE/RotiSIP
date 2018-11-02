@@ -149,13 +149,8 @@ body {
             <td style="text-align:left;"><?php echo $data->jumlah ?></td>
             <td style="text-align:left;"><?php echo $data->total_jual ?></td>
             <td style="text-align:center;">
-              <a href="javascript:;"
-                        data-tgl="<?php echo $tgl ?>"
-                        data-no_transaksi="<?php echo $data->no_transaksi ?>"
-                        data-jumlah="<?php echo $data->jumlah ?>"
-                        data-total_jual="<?php echo $data->total_jual ?>"                      
-                        data-toggle="modal" data-target="#detail-data">
-                        <button  data-toggle="modal" data-target="#detail-data" class="btn btn-info">Detail</button></a></td>
+              <a class="btn btn-mini" href="<?php echo site_url('LaporanSIP/detail/'.$data->no_transaksi)?>">
+                        <button class="btn btn-info">Detail</button></a>
           </tr>
           <?php   }} ?>
         </table>
