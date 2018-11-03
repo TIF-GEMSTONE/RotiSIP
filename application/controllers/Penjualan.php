@@ -162,6 +162,15 @@ function inputdetail(){
 
 }
 
+	function lunasi_pesanan(){
+		$kode['kode'] = $this->Penjualan_model->get_notrans();
+		$id_pesan = $this->input->post('id_pesan');
+		$this->db->query("insert into tabel_detail_sip (no_transaksi, id_roti, harga, jumlah, total ) select  id_pesan, id_roti, harga, jumlah, total  from tabel_detail_pesan where id_pesan='$id_pesan'");
+		$this->db->query("UPDATE `tabel_detail_sip` SET `no_transaksi`='".$kode['kode']."' WHERE no_transaksi='$id_pesan'");
+		redirect('Penjualan');
+
+		
+	}
 	
 }
 ?>

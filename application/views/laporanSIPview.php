@@ -75,6 +75,22 @@
                     </td>
         </tr>
         <?php   }} ?>
+        
+        <?php
+          if( ! empty($transaksi)){
+          foreach($pesanan as $data){
+          $tgl = date('d-m-Y', strtotime($data->tgl_transaksi)); 
+        ?>
+          <td style="text-align:left;"><?php echo $tgl ?></td>
+          <td style="text-align:left;"><?php echo $data->no_transaksi ?></td>
+          <td style="text-align:left;"><?php echo $data->jumlah ?></td>
+          <td style="text-align:left;"><?php echo $data->total_jual ?></td>
+          <td style="text-align:center;"> 
+            <a class="btn btn-mini" href="<?php echo site_url('LaporanSIP/detail/'.$data->no_transaksi)?>">
+                        <button class="btn btn-info">Detail</button></a>
+                    </td>
+        </tr>
+        <?php   }} ?>
       </table>
 <!--       <a href="<?php echo base_url()?>LaporanSIP/cetak" target="_blank" ><button class="btn btn-info"> Cetak</button></a> -->
 

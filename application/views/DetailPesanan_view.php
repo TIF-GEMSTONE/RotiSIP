@@ -31,28 +31,40 @@
         <?php 
       }?>
       </table>
-      <!--<form action="<?php //echo base_url().'Penjualan/simpan_penjualan'?>" method="post">-->
+      <form action="<?php echo base_url().'Pesanan/selesai'?>" method="post">
             <table>
                 <tr>
                     <td style="width:760px;" rowspan="2"></td>
                     <th style="width:140px;">Total(Rp)</th>
-                    <th style="text-align:right;width:140px;"><input type="text" name="total2" value="<?php echo($detail[0]->grand_total);?>" style="text-align:right;margin-bottom:5px;" ></th>
+                    <th style="text-align:right;width:140px;">
+                      <input class="form-control input-sm" type="text" name="total2" value="<?php echo($detail[0]->grand_total);?>" style="text-align:right;margin-bottom:5px;" ></th>
                     <input type="hidden" id="total" name="total" value="<?php echo($detail[0]->grand_total);?>"  class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
+                    <input type="hdden" id="id_pesan" name="id_pesan" value="<?php echo($detail[0]->id_pesan);?>"  class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
                 </tr>
                 <tr>
-                    <th>Dp(Rp)</th>
-                    <th style="text-align:right;"><input type="text" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" value="<?php echo($detail[0]->dp);?>" required></th>
+                    <th>Dp (Rp)</th>
+                    <th style="text-align:right;"><input type="text" id="dp" name="dp" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" value="<?php echo($detail[0]->dp);?>" required></th>
                     <input type="hidden" id="jml_uang2" name="jml_uang2" class="form-control input-sm" value="<?php echo($detail[0]->dp);?>" style="text-align:right;margin-bottom:5px;" required>
                 </tr>
                 <tr>
                     <td></td>
-                    <th>Pelunasan(Rp)</th>
-                    <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" value="<?php echo($detail[0]->pelunasan);?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+                    <th>Pelunasan (Rp)</th>
+                    <th style="text-align:right;"><input type="text" id="pelunasan" name="pelunasan" value="<?php echo abs($detail[0]->pelunasan);?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Bayar (Rp)</th>
+                    <th style="text-align:right;"><input type="text" id="bayar" name="bayar" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Kembali (Rp)</th>
+                    <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian"  class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
                 </tr>
                 <tr>
                     <td></td>
                     <th></th>
-                    <!--<th><button type="submit" class="btn btn-info btn-lg"> Selesai</button></th>-->
+                    <th><button type="submit" class="btn btn-info btn-lg"> Selesai</button></th>
                 </tr>
 
             </table>
@@ -65,4 +77,23 @@
         
       </div>
     </div>
+    <script src="<?php echo base_url().'assets/dist/js/bootstrap-select.min.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/bootstrap.min.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/jquery.dataTables.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/jquery.price_format.min.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/moment.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/bootstrap-datetimepicker.min.js'?>"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#bayar').on("input",function(){
+                var total=$('#pelunasan').val();
+                var jumuang=$('#bayar').val();
+                var hsl=jumuang.replace(/[^\d]/g,"");
+                $('#jml_uang2').val(hsl);
+                $('#kembalian').val(total - hsl);
+            });
+            
+        });
+    </script>
 

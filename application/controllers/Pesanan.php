@@ -185,8 +185,16 @@ class Pesanan extends CI_Controller{
 
 	}
 
-	function input_pesanan(){
-
+	function selesai(){
+		$id_pesan = $this->input->post('id_pesan');
+		$total = $this->input->post('total');
+		$bayar = $this->input->post('bayar');
+		$kembalian = $this->input->post('kembalian');
+		$dp = $this->input->post('dp');
+		$this->db->query("INSERT INTO `tabel_transaksi_sip`(`no_transaksi`, `id_pegawai`, `tgl_transaksi`, `total_jual`, `uang`, `kembalian`,`dp`) VALUES ('$id_pesan','40001',CURDATE(),'$total','$bayar','$kembalian','$dp')");
+		redirect('Pesanan');
 	}
+
+
 }
 ?>
