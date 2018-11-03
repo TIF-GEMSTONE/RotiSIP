@@ -71,6 +71,28 @@
 <div id="grafik"></div>
 <!-- END load chart -->
  
+ <!-- Tabel Penjualan Roti -->
+ <center><h5>Rekap Penjualan Roti</h5></center><br/>
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <tr>
+        <th>Id Roti</th>
+        <th>Nama Roti</th>
+        <th>Jumlah Roti</th>
+    </tr>
+    <tr>
+        <?php
+            /* Mengambil query report*/
+            foreach($transaksi as $result){
+            
+        ?>
+          <td style="text-align:left;"><?php echo $result->id_roti ?></td>
+          <td style="text-align:left;"><?php echo $result->nama_roti ?></td>
+          <td style="text-align:left;"><?php echo $result->jumlah ?></td>
+        </tr>
+        <?php   } ?>
+      </table>
+
+
 <!-- Script untuk memanggil library Highcharts -->
 <script type="text/javascript">
 $(function () {
@@ -86,7 +108,7 @@ $(function () {
             }
         },
         title: {
-            text: 'Laporan Penjualan Roti',
+            text: 'Grafik Penjualan Roti',
             style: {
                     fontSize: '18px',
                     fontFamily: 'Verdana, sans-serif'
@@ -162,11 +184,6 @@ $(function () {
         })
     })
     </script>
-
-    <!-- javascript Detail Transaksi --><!-- 
-     <script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'?>" type="text/javascript"></script>
-    <script src="<?php echo base_url().'assets/js/bootstrap.js'?>" type="text/javascript"></script>
-    <script src="<?php echo base_url().'assets/js/jquery-ui.js'?>" type="text/javascript"></script> -->
    
 </table>
     <footer class="sticky-footer">

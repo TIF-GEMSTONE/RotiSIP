@@ -22,6 +22,7 @@ class m_grafik extends CI_Model{
     	$this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
     	$this->db->group_by('tabel_detail_sip.id_roti');
  		$this->db->where('DATE(tgl_transaksi)', $date);
+        $this->db->order_by('jumlah', 'desc');
  		$query = $this->db->get();
 		return $query->result();
 
@@ -37,6 +38,7 @@ class m_grafik extends CI_Model{
     	$this->db->group_by('tabel_detail_sip.id_roti');
  		$this->db->where('MONTH(tgl_transaksi)', $month); // Tambahkan where bulan
     	$this->db->where('YEAR(tgl_transaksi)', $year); // Tambahkan where tahun
+        $this->db->order_by('jumlah', 'desc');
  		$query = $this->db->get();
 		return $query->result();
   }
@@ -49,6 +51,7 @@ class m_grafik extends CI_Model{
     $this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
     $this->db->group_by('tabel_detail_sip.id_roti');
  		$this->db->where('YEAR(tgl_transaksi)', $year);
+        $this->db->order_by('jumlah', 'desc');
  		$query = $this->db->get();
 		return $query->result();
   }
@@ -60,6 +63,7 @@ class m_grafik extends CI_Model{
     $this->db->join('tabel_detail_sip','tabel_transaksi_sip.no_transaksi=tabel_detail_sip.no_transaksi');
     $this->db->join('tabel_roti', 'tabel_detail_sip.id_roti=tabel_roti.id_roti');
     $this->db->group_by('tabel_detail_sip.id_roti');
+    $this->db->order_by('jumlah', 'desc');
     $query = $this->db->get();
     return $query->result();
   }
